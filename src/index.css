@@ -3,7 +3,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  /* color-scheme: light dark; */
   background-color: rgba(255, 255, 255, 0.87);
 
   font-synthesis: none;
@@ -60,6 +60,7 @@ input, button, textarea, select {
 */
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
+  color: #3B3B3B;
 }
 /*
   8. Create a root stacking context
