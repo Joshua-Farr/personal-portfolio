@@ -6,7 +6,6 @@ import { BsLinkedin } from "react-icons/bs";
 export const Header = () => {
 
     const HeaderWrapper = styled.div`
-        // background-color: #F6F4F1;
         height: 4em;
         display: flex;
         flex-direction: row;
@@ -23,10 +22,14 @@ export const Header = () => {
         display: flex;
         flex-direction: column;
         justify-content: center;
+
+        &:hover{
+            cursor: pointer;
+        }
     `
 
     const LinkWrapper = styled.div`
-        width: 200px;
+        // width: 200px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -38,17 +41,19 @@ export const Header = () => {
                     JOSHFARR.DEV
                 </StyledName>
                 <LinkWrapper>
-                    <StyledLink>About</StyledLink>
-                    <StyledLink>Work</StyledLink>
-                    <StyledLink>Resume</StyledLink>
-                    <>
-                    <StyledLink>
-                        <MdOutlineMail />
-                    </StyledLink>
-                    <StyledLink>
-                        <BsLinkedin />
-                    </StyledLink>
-                    </>
+                    <div style={{display: "flex", gap: "1em", marginRight: "3em"}}>
+                        <StyledLink>About</StyledLink>
+                        <StyledLink>Work</StyledLink>
+                        <StyledLink>Resume</StyledLink>
+                    </div>
+                    <div style={{display: "flex", gap: "1em"}}>
+                        <StyledLink>
+                            <MdOutlineMail />
+                        </StyledLink>
+                        <StyledLink>
+                            <BsLinkedin />
+                        </StyledLink>
+                    </div>
                 </LinkWrapper>
             </HeaderWrapper>
         )
