@@ -48,7 +48,7 @@ const SectionWrapper = styled.div`
     margin-bottom: 3rem;
 
 
-    @media only screen and (max-width: 450px)  {
+    @media only screen and (max-width: 450px)  {    
         width: 200px;
         height: 200px;
         margin-bottom: 0;
@@ -68,21 +68,17 @@ const SectionWrapper = styled.div`
         <StyledTitle>About Me</StyledTitle>
         <>
           <StyledParagraph>
-            I love doing jigsaw puzzles. Growing up, I spent many weekends at my
-            grandparents doing Jigsaw puzzles together - I think this is where
-            my love of problem solving (and frosted sugar cookies) initially
+            I absolutely love doing jigsaw puzzles. Growing up, I spent many weekends at my
+            grandparents doing hundreds of puzzles together. I think this is where my love of problem solving (and frosted sugar cookies) initially
             started - a passion that has shaped my own professional career and
             led me to initially pursue a degree where I could do just that.
           </StyledParagraph>
           <EmphasizedSentence>
-            Before I became a developer, I spent 4 years as a process
-            improvement engineer at Asurion helping to make our employees lives
-            easier.
+            Before I dove into software engineering, I spent four years in process improvement at Asurion. My goal? To make things run smoother and more efficiently for our operations team.
           </EmphasizedSentence>
           <StyledParagraph>
-            During this time, I worked closely with technical product managers
-            and their developers to enhance the performance of tools used by
-            both our in-field technicians and their leaders.
+            
+During this time, I collaborated closely with technical product managers and their developers to boost the performance of tools used by both our in-field technicians and their leaders.
           </StyledParagraph>
 
           <EmphasizedSentence>
@@ -97,23 +93,16 @@ const SectionWrapper = styled.div`
           </StyledParagraph>
 
           <EmphasizedSentence>
-            Over time, I felt the need to play a larger hands-on role within the
-            product developement cycle.
+          Over time, I wanted to get more hands-on in the product development cycle.
           </EmphasizedSentence>
           <StyledParagraph>
-            This led me to dive deeper into software engineering, where I could
-            directly contribute to the creation and improvment of technology
-            products. I began a course of self-study and sought out the help of
-            senior engineering mentors to help guide my journey, ultimately
-            finding opportunities to directly contribute to Asurion's production
-            code base.
+This pushed me to move further into software engineering, where I could jump right into shaping and refining technology products. I started teaching myself and reached out to seasoned engineering mentors for guidance, eventually landing chances to directly add to Asurion's production codebase.
           </StyledParagraph>
 
           <EmphasizedSentence>
-            Moving forward, I want to continue working as a developer with
-            talented product managers & engineers helping to create fantastic
-            products that users adore.
-          </EmphasizedSentence>
+            
+Looking ahead, my goal is to keep collaborating as a developer with talented product managers and engineers to solve the puzzle I enjoy the most - creating amazing products that users love. 
+          </EmphasizedSentence> 
         </>
       </AboutMeWrapper>
       <ProfilePicture src="src\assets\pictures\headshot.jpg"></ProfilePicture>

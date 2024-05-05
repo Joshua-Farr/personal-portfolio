@@ -27,7 +27,7 @@ export const MainPage = () => {
     <>
       <Header />
       <HeroSection />
-      <AboutMe id="about"/>
+      <AboutMe />
       <Divider />
       <Skills />
       <Divider />

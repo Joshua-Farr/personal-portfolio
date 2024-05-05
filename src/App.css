@@ -13,3 +13,11 @@ body {
 }
 
 
+@media screen and (max-width: 750px) {
+  body {
+    background-color: lightgreen;
+    margin-inline: 1.5em;
+    max-width: 450px;
+  }
+}
+

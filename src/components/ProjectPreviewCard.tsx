@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ProjectPreviewCard = () => {
+export const ProjectPreviewCard = ({name, description}) => {
   
   const Card = styled.div`
     max-width: 500px;
@@ -70,10 +70,9 @@ export const ProjectPreviewCard = () => {
         style={{ maxWidth: "100%", borderRadius: "5px" }}
       />
 
-      <ProjectTitle>Project Title</ProjectTitle>
+      <ProjectTitle>{name}</ProjectTitle>
       <ProjectDescription>
-        Here is a super small description of the project. Lorem ipsum dolor, sit
-        amet consectetur adipisicing.
+        {description}
       </ProjectDescription>
 
       <StyledButton href="">Project Details</StyledButton>

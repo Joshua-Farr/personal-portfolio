@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { IndividualSkill } from "./IndividualSkill";
 
 export const Skills = () => {
   const StyledTitle = styled.h1`
@@ -12,100 +13,116 @@ export const Skills = () => {
     font-weight: 300;
     margin-bottom: 3em;
     margin-top: 1em;
-    max-width: 600px;
+    max-width: 700px;
 
       @media only screen and (max-width: 450px)  {
           font-size: 1rem;
       }
-  `;
+  `
+
+  const SkillTitle = styled.h2`
+        margin-bottom: .75em;
+  `
 
 
 
   const SkillGrid = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 3em;
-  `;
+    grid-template-columns: 1fr 1fr;
+    gap: 3em;
+  `
 
-  const SkillCard = styled.div`
-    border-radius: 17px;
-    padding: 0.75em;
-    borderradius: 10px;
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-  `;
-  const StyledLi = styled.li``;
+
+  const SkillColumns = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    // border: 2px solid red;
+    gap: 1em;
+  
+  
+  `
+
+  const SkillParagraphWrapper = styled.div`
+    display: flex
+    `
+
 
   return (
     <>
       <StyledTitle>My Skills</StyledTitle>
-      <StyledParagraph>
-        In addition to holding a <b>Lean Six Sigma Black Belt</b> certification,
-        I am also an <b>AWS Certified Developer - Associate (DVA-C02)</b> and a
-        proud graduate of the Scrimba Front-end Developer School. Currently, I'm
-        sharpening my proficiency in functional programming, delving into the book,
-        Grokking Simplicity as part of my ongoing development journey within our
-        developer book club.
-      </StyledParagraph>
+      <SkillParagraphWrapper>
+        {/* <StyledImage src="src/assets/pictures/skills-canva.png"></StyledImage> */}
+        <StyledParagraph>
+          In addition to holding a <b>Lean Six Sigma Black Belt</b> certification,
+          I am also an <b>AWS Certified Developer - Associate (DVA-C02)</b> and a
+          proud graduate of the Scrimba Front-end Developer School. <br></br>
+          <div style={{height: ".85em"}}></div>
+          Currently, I'm sharpening my proficiency in functional programming, delving into the book,
+          Grokking Simplicity as part of my ongoing development learning journey.
+        </StyledParagraph>
+      </SkillParagraphWrapper>
+      
       <SkillGrid>
-        <>
-          <h2>Languages:</h2>
-          <ul>
-            <StyledLi>JavaScript</StyledLi>
-            <StyledLi>SQL</StyledLi>
-            <StyledLi>HTML/CSS</StyledLi>
-          </ul>
-        </>
+        <div style={{display: "flex", flexDirection: "column"}}>
+          <SkillTitle>Languages:</SkillTitle>
+          <SkillColumns>
+              <IndividualSkill>JavaScript</IndividualSkill>
+              <IndividualSkill>SQL</IndividualSkill>
+              <IndividualSkill>HTML/CSS</IndividualSkill>
+          </SkillColumns>
+        </div>
 
-        <>
-          <h2>Developer Tools:</h2>
-          <ul>
-            <StyledLi>Git</StyledLi>
-            <StyledLi>VS Code</StyledLi>
-            <StyledLi>Visual Studio</StyledLi>
-            <StyledLi>NPM</StyledLi>
-          </ul>
-        </>
-        <>
-          <h2>Frameworks/Libraries:</h2>
-          <ul>
-            <StyledLi>React</StyledLi>
-            <StyledLi>Node.js</StyledLi>
-            <StyledLi>Jest</StyledLi>
-            <StyledLi>Material-UI</StyledLi>
-            <StyledLi>Redux</StyledLi>
-            <StyledLi>Styled Components</StyledLi>
-            <StyledLi>React Router</StyledLi>
-            <StyledLi>Vite</StyledLi>
-          </ul>
-        </>
+        <div style={{display: "flex", flexDirection: "column"}}>
+          <SkillTitle>Developer Tools:</SkillTitle>
+          <SkillColumns>
+            <IndividualSkill>Git</IndividualSkill>
+            <IndividualSkill>VS Code</IndividualSkill>
+            <IndividualSkill>Visual Studio</IndividualSkill>
+            <IndividualSkill>NPM</IndividualSkill>
+          </SkillColumns>
+        </div>
+        <div style={{display: "flex", flexDirection: "column"}}>
+          <SkillTitle>Frameworks/Libraries:</SkillTitle>
+          <SkillColumns>
+            <IndividualSkill>React</IndividualSkill>
+            <IndividualSkill>Node.js</IndividualSkill>
+            <IndividualSkill>Jest</IndividualSkill>
+            <IndividualSkill>Material-UI</IndividualSkill>
+            <IndividualSkill>Redux</IndividualSkill>
+            <IndividualSkill>Styled Components</IndividualSkill>
+            <IndividualSkill>React Router</IndividualSkill>
+            <IndividualSkill>Vite</IndividualSkill>
+          </SkillColumns>
+        </div>
 
-        <>
-          <h2>Other Skills:</h2>
-          <ul>
-            <StyledLi>Agile</StyledLi>
-            <StyledLi>APIs</StyledLi>
-            <StyledLi>Unit Testing</StyledLi>
-            <StyledLi>Continuous Integration</StyledLi>
-            {/* <StyledLi>Version Control</StyledLi> */}
-            {/* <StyledLi>Problem-solving</StyledLi> */}
-            {/* <StyledLi>Performance Optimization</StyledLi> */}
-            {/* <StyledLi>Team Collaboration</StyledLi> */}
-            <StyledLi>Project Management</StyledLi>
-            {/* <StyledLi>Critical Thinking</StyledLi> */}
-            <StyledLi>UI/UX Design</StyledLi>
-            {/* <StyledLi>Web Development</StyledLi> */}
-            {/* <StyledLi>Debugging</StyledLi> */}
-            {/* <StyledLi>Software Development Life Cycle</StyledLi>
-                <StyledLi>Object-Oriented Programming</StyledLi> */}
-            <StyledLi>Data Structures</StyledLi>
-            <StyledLi>Design Patterns</StyledLi>
-            {/* <StyledLi>Algorithms</StyledLi>
-                <StyledLi>Cloud Computing</StyledLi>
-                <StyledLi>DevOps</StyledLi>
-                <StyledLi>Scalability</StyledLi> */}
-            {/* <StyledLi>Analytical Skills</StyledLi> */}
-          </ul>
-        </>
+        <div style={{display: "flex", flexDirection: "column"}}>
+          <SkillTitle>Other Skills:</SkillTitle>
+          <SkillColumns>
+            <IndividualSkill>Agile</IndividualSkill>
+            <IndividualSkill>APIs</IndividualSkill>
+            <IndividualSkill>Unit Testing</IndividualSkill>
+            <IndividualSkill>Continuous Integration</IndividualSkill>
+            {/* <IndividualSkill>Version Control</IndividualSkill> */}
+            {/* <IndividualSkill>Problem-solving</IndividualSkill> */}
+            {/* <IndividualSkill>Performance Optimization</IndividualSkill> */}
+            {/* <IndividualSkill>Team Collaboration</IndividualSkill> */}
+            <IndividualSkill>Project Management</IndividualSkill>
+            {/* <IndividualSkill>Critical Thinking</IndividualSkill> */}
+            <IndividualSkill>UI/UX Design</IndividualSkill>
+            {/* <IndividualSkill>Web Development</IndividualSkill> */}
+            {/* <IndividualSkill>Debugging</IndividualSkill> */}
+            {/* <IndividualSkill>Software Development Life Cycle</IndividualSkill>
+                <IndividualSkill>Object-Oriented Programming</IndividualSkill> */}
+            <IndividualSkill>Data Structures</IndividualSkill>
+            <IndividualSkill>Design Patterns</IndividualSkill>
+            {/* <IndividualSkill>Algorithms</IndividualSkill>
+                <IndividualSkill>Cloud Computing</IndividualSkill>
+                <IndividualSkill>DevOps</IndividualSkill>
+                <IndividualSkill>Scalability</IndividualSkill> */}
+            {/* <IndividualSkill>Analytical Skills</IndividualSkill> */}
+
+          </SkillColumns>
+        </div>
       </SkillGrid>
     </>
   );

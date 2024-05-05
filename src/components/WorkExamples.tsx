@@ -42,7 +42,7 @@ export const WorkExamples = () => {
 
       <StyledTitle>My Work</StyledTitle>
       <StyledParagraph>
-      Here are a few of the different coding projects that I've recently worked on. Each one is accompanied by a detailed case study, highlighting my continued growth as a developer and showcasing the diverse range of technologies and methodologies I've worked with along the way.      
+      Here are a few of the different coding projects that I've recently worked on. <br></br><b>Each one is accompanied by a detailed case study</b>, highlighting my continued growth as a developer and showcasing the diverse range of technologies and methodologies I've worked with along the way.      
       </StyledParagraph>
       <div
         style={{
@@ -53,11 +53,13 @@ export const WorkExamples = () => {
         }}
       >
         <ProjectGrid>
-          <ProjectPreviewCard />
-          <ProjectPreviewCard />
-          <ProjectPreviewCard />
-          <ProjectPreviewCard />
-        </ProjectGrid>
+          <ProjectPreviewCard name="PodCraft: cEDH Nexus" description="Simulation of a competitive 4-player pod, designed to help players practice mulligans for competitive Magic: The
+Gathering cEDH events."/>
+          {/* ManaForge: cEDH Pod Battle Simulator ??? */}
+          <ProjectPreviewCard name="PomoCode" description="Interval timer for the motivated programmer who wants to work in small, hyper-focused sprints without the risk of burning out." />
+          <ProjectPreviewCard name="StoreBoost" description="A customizable e-commerce storefront application built for small businesses to overcome the initial hurdle of selling online."/>
+          <ProjectPreviewCard name="TBD" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga iure deserunt, odio provident praesentium nobis."/>
+</ProjectGrid>
       </div>
     </>
   );

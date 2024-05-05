@@ -43,7 +43,7 @@ export const Header = () => {
 
   return (
     <HeaderWrapper>
-      <StyledName>JOSHFARR.DEV</StyledName>
+      <StyledName>JOSHFARR</StyledName>
       <LinkWrapper>
         <div style={{ display: "flex", gap: "1em", marginRight: "3em" }}>
           <StyledLink data-scroll href="#about">About</StyledLink>

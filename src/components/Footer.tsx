@@ -90,7 +90,10 @@ export const Footer = () => {
           <StyledButton>Get in touch</StyledButton>
         </StyledConnect>
         <Copyright>
-          Website built in React.js by Josh Farr | Copyright © 2024
+          {/* <a href="https://github.com/Joshua-Farr/personal-portfolio"> */}
+            Website built in React.js by Josh Farr | Copyright © 2024
+
+            {/* </a> */}
         </Copyright>
         <div
           style={{
