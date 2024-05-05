@@ -1,3 +1,5 @@
-body{
+body {
   margin-inline: 11em;
+  max-width: 1024px;
+  margin-inline: auto;
 }

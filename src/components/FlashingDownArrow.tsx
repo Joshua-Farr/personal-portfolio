@@ -1,15 +1,7 @@
 export const FlashingDownArrow = () => {
+  const FlashTiming = (ms: number) => {
+    return ms;
+  };
 
-    const FlashTiming = ( ms: number) => {
-        return ms;
-        
-    }
-
-
-
-    return (
-        <>
-            \/
-        </>
-    )
-}
+  return <>\/</>;
+};
