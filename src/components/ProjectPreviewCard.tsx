@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ProjectPreviewCard = ({name, description}) => {
+export const ProjectPreviewCard = ({name, description} : { name: string, description: string }) => {
   
   const Card = styled.div`
     max-width: 500px;

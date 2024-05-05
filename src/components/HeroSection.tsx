@@ -26,17 +26,6 @@ export const HeroSection = () => {
         @media only screen and (max-width: 450px)  {
             font-size: 3rem;
         }
-
-    `
-
-    const StyledH3 = styled.h3`
-        maxWidth: 750px; 
-        font-weight: 300;
-
-        @media only screen and (max-width: 450px)  {
-            font-size: 1rem;
-        }
-    
     `
 
     const StyledParagraph = styled.p`
