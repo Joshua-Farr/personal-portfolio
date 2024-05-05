@@ -9,10 +9,7 @@ export const HeroSection = () => {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        height: calc(100vh - 4em);
-
-        border: 2px solid red;
-    
+        height: calc(100vh - 4em);    
     `
 
     const StyledH1 = styled.h1`
