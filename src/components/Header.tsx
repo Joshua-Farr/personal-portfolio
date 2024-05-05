@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import { MdOutlineMail } from "react-icons/md";
 import { BsLinkedin } from "react-icons/bs";
+import { FaGithubSquare } from "react-icons/fa";
 
 
 export const Header = () => {
@@ -48,13 +49,17 @@ export const Header = () => {
                     </div>
                     <div style={{display: "flex", gap: "1em"}}>
                         <StyledLink>
-                            <MdOutlineMail />
+                            <MdOutlineMail size= {"1.45em"}/>
                         </StyledLink>
-                        <StyledLink>
+                        <StyledLink href="https://www.linkedin.com/in/joshuaafarr/">
                             <BsLinkedin />
+                        </StyledLink>
+                        <StyledLink href="https://github.com/Joshua-Farr">
+                            <FaGithubSquare size= {"1.2em"}/>
                         </StyledLink>
                     </div>
                 </LinkWrapper>
             </HeaderWrapper>
         )
-}
+
+    }

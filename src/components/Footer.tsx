@@ -1,4 +1,5 @@
 import { BsLinkedin } from "react-icons/bs"
+import { FaGithubSquare } from "react-icons/fa"
 import { MdOutlineMail } from "react-icons/md"
 import styled from "styled-components"
 
@@ -8,6 +9,10 @@ export const Footer = () => {
         margin-top: 4em;
         margin-bottom: 2em;
         text-align: center;    
+        dispaly: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     `
 
     const StyledLink = styled.a`
@@ -50,21 +55,28 @@ export const Footer = () => {
         borderRadius: 10px;
         box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
         display: flex;
+        flex-direction: row;
         align-items: center;
         justify-content: center;
         font-weight: 500;
-    `
+        text-align: left;
+        `
 
     const Copyright = styled.h5`
-    margin-top: 5em;
+        margin-top: 5em;        
     `
     return (
         <>
         <FooterWrapper>
 
             <StyledConnect>
-                Interested in working together? Let's meet up! I'll buy the coffee.
-                <StyledButton>Get Started</StyledButton>
+                <div >
+                    <h2 style={{color: "white", marginBottom: ".25em"}}>
+                        Let's team up and make something awesome.
+                    </h2>
+                        If you're on the lookout for a developer, have any questions, or simply want to chat, I'm all ears!                
+                </div>
+                <StyledButton>Get in touch</StyledButton>
             </StyledConnect>
             
             {/* <StyledLink>
@@ -74,7 +86,20 @@ export const Footer = () => {
                 <BsLinkedin />
             </StyledLink>
          */}
+
+
             <Copyright>Website built in React.js by Josh Farr | Copyright © 2024</Copyright>
+            <div style={{display: "flex", justifyContent: "center", alignItems: "center", gap: "1em", marginTop: "2em"}}>
+                <StyledLink>
+                    <MdOutlineMail size= {"1.45em"}/>
+                </StyledLink>
+                <StyledLink href="https://www.linkedin.com/in/joshuaafarr/">
+                    <BsLinkedin />
+                </StyledLink>
+                <StyledLink href="https://github.com/Joshua-Farr">
+                    <FaGithubSquare size= {"1.2em"}/>
+                </StyledLink>
+            </div>
 
 
         </FooterWrapper>

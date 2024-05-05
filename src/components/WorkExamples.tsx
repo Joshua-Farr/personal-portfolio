@@ -23,10 +23,10 @@ export const WorkExamples = () =>{
         <StyledParagraph>Hello I am a styled paragraph. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid harum quibusdam sunt optio, sequi nostrum sed perspiciatis. A corporis, hic tempora exercitationem qui voluptatem labore, ducimus facilis incidunt quis quas. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi quos perferendis autem, minima fugiat odit dicta facilis eum natus sequi officiis sit obcaecati eius dolorem expedita odio, est illo quas.</StyledParagraph>
         <div style={{display: "flex", flexDirection: "column", alignItems: "center", marginTop: "2em"}}>
             <div style={{display:"grid", gridTemplateColumns: "1fr 1fr", alignItems: "center", gap: "3em"}}>
-                <ProjectPreviewCard/>
-                <ProjectPreviewCard/>
-                <ProjectPreviewCard/>
-                <ProjectPreviewCard/>
+                <ProjectPreviewCard title="" />
+                <ProjectPreviewCard title="" />
+                <ProjectPreviewCard title="" />
+                <ProjectPreviewCard title="" />
             </div>
         </div>
         </>

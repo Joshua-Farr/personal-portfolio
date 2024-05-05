@@ -19,10 +19,10 @@ export const ProjectPreviewCard = () =>
         `
 
         const StyledButton = styled.a`
-            border: 2px solid #646cff;
+            border: 2px solid #551A8B;
             padding: .5em 2em;
             border-radius: 17px;
-            background-color: #646cff;
+            background-color: #551A8B;
             color: white;  
             
             &:hover{
@@ -43,7 +43,7 @@ export const ProjectPreviewCard = () =>
                 <ProjectTitle>Project Title</ProjectTitle>
                 <p style={{maxWidth: "375px", marginTop: "0.5rem", marginBottom: "2rem"}}>Here is a super small description of the project. Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
 
-                <StyledButton href="">Learn more</StyledButton>
+                <StyledButton href="">Project Details</StyledButton>
             </Card>
         )
     }
