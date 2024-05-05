@@ -1,27 +1,49 @@
 import styled from "styled-components";
 
 export const ProjectPreviewCard = () => {
+  
+  const Card = styled.div`
+    max-width: 500px;
+    border-radius: 17px;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+    @media only screen and (max-width: 450px)  {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      jsutify-content: center;
+    }
+  `;
+
   const ProjectTitle = styled.h1`
     font-size: 2rem;
     font-weight: 700;
     color: #3b3b3b;
     margin-top: 1em;
+
+    @media only screen and (max-width: 450px)  {
+      margin-top: .5em;
+    }
   `;
 
-  const Card = styled.div`
-    max-width: 500px;
-    border-radius: 17px;
-    padding: 2rem;
-    borderradius: 10px;
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-  `;
+  const ProjectDescription = styled.p`
+    max-width: 375px;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
 
+    @media only screen and (max-width: 450px)  {
+      font-size: .8rem;
+    }
+  
+  `
   const StyledButton = styled.a`
     border: 2px solid #551a8b;
     padding: 0.5em 2em;
     border-radius: 17px;
     background-color: #551a8b;
     color: white;
+    text-align: center;
 
     &:hover {
       color: white;
@@ -32,7 +54,13 @@ export const ProjectPreviewCard = () => {
       transition-timing-function: ease;
       transition-delay: 0s;
     }
+
+    @media only screen and (max-width: 450px)  {
+      margin-top: .25em;
+      width: 100%;
+    }
   `;
+
 
   return (
     <Card>
@@ -43,12 +71,10 @@ export const ProjectPreviewCard = () => {
       />
 
       <ProjectTitle>Project Title</ProjectTitle>
-      <p
-        style={{ maxWidth: "375px", marginTop: "0.5rem", marginBottom: "2rem" }}
-      >
+      <ProjectDescription>
         Here is a super small description of the project. Lorem ipsum dolor, sit
         amet consectetur adipisicing.
-      </p>
+      </ProjectDescription>
 
       <StyledButton href="">Project Details</StyledButton>
     </Card>

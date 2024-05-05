@@ -1,13 +1,25 @@
 import styled from "styled-components";
 
 export const AboutMe = () => {
+
+const SectionWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4em;
+
+    @media only screen and (max-width: 450px)  {
+        flex-direction: column-reverse;
+        gap: 1em;
+      }    
+`
+
   const AboutMeWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     max-width: 850px;
-    // margin-inline: auto;
   `;
 
   const StyledTitle = styled.h1`
@@ -16,10 +28,17 @@ export const AboutMe = () => {
   `;
 
   const StyledParagraph = styled.p`
-    fontweight: 300;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 1em;
+    margin-top: 1em;
     max-width: 600px;
+
+        @media only screen and (max-width: 450px)  {
+            font-size: 1rem;
+
+        }
+    
   `;
 
   const ProfilePicture = styled.img`
@@ -27,22 +46,25 @@ export const AboutMe = () => {
     width: 350px;
     height: 350px;
     margin-bottom: 3rem;
+
+
+    @media only screen and (max-width: 450px)  {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 0;
+
+    }
   `;
 
   const EmphasizedSentence = styled.h3`
     max-width: 600px;
+    font-size: 1.33rem;
   `;
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: "4em",
-      }}
-    >
+    <SectionWrapper>
       <AboutMeWrapper>
+        <div id="about"></div>
         <StyledTitle>About Me</StyledTitle>
         <>
           <StyledParagraph>
@@ -95,6 +117,6 @@ export const AboutMe = () => {
         </>
       </AboutMeWrapper>
       <ProfilePicture src="src\assets\pictures\headshot.jpg"></ProfilePicture>
-    </div>
+    </SectionWrapper>
   );
 };

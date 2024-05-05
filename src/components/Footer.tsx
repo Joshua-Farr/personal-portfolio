@@ -14,14 +14,26 @@ export const Footer = () => {
     justify-content: center;
   `;
 
-  const StyledLink = styled.a`
+
+
+  const StyledConnect = styled.div`
+    color: white;
+    background-color: #141c3a;
+    border-radius: 17px;
+    padding: 2rem;
+    borderradius: 10px;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: center;
+    font-weight: 500;
+    text-align: left;
 
-    &:hover {
-      cursor: pointer;
-    }
+    @media only screen and (max-width: 450px)  {
+        flex-direction: column;
+        align-items: flex-start;
+      }
   `;
 
   const StyledButton = styled.button`
@@ -39,27 +51,31 @@ export const Footer = () => {
       background-color: #5be9b9;
       color: #3b3b3b;
     }
+
+    @media only screen and (max-width: 450px)  {
+        margin-top: 2em;
+    }
+
   `;
 
-  const StyledConnect = styled.div`
-    color: white;
-    background-color: #141c3a;
-    height: 10em;
-    border-radius: 17px;
-    padding: 2rem;
-    borderradius: 10px;
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+
+    const Copyright = styled.h5`
+    margin-top: 5em;
+    `;
+
+    const StyledLink = styled.a`
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: center;
-    font-weight: 500;
-    text-align: left;
-  `;
 
-  const Copyright = styled.h5`
-    margin-top: 5em;
-  `;
+    &:hover {
+        cursor: pointer;
+    }
+    `;
+
+
+ 
+
   return (
     <>
       <FooterWrapper>
@@ -73,15 +89,6 @@ export const Footer = () => {
           </div>
           <StyledButton>Get in touch</StyledButton>
         </StyledConnect>
-
-        {/* <StyledLink>
-                <MdOutlineMail />
-            </StyledLink>
-            <StyledLink>
-                <BsLinkedin />
-            </StyledLink>
-         */}
-
         <Copyright>
           Website built in React.js by Josh Farr | Copyright © 2024
         </Copyright>
@@ -94,7 +101,7 @@ export const Footer = () => {
             marginTop: "2em",
           }}
         >
-          <StyledLink>
+           <StyledLink href="https://www.linkedin.com/in/joshuaafarr/">
             <MdOutlineMail size={"1.45em"} />
           </StyledLink>
           <StyledLink href="https://www.linkedin.com/in/joshuaafarr/">

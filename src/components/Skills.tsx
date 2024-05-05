@@ -6,11 +6,20 @@ export const Skills = () => {
     margin-bottom: 1rem;
   `;
 
+
   const StyledParagraph = styled.p`
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 3em;
+    margin-top: 1em;
     max-width: 600px;
-    fontweight: 300;
-    margin-bottom: 3rem;
+
+      @media only screen and (max-width: 450px)  {
+          font-size: 1rem;
+      }
   `;
+
+
 
   const SkillGrid = styled.div`
     display: grid;
@@ -33,7 +42,7 @@ export const Skills = () => {
         In addition to holding a <b>Lean Six Sigma Black Belt</b> certification,
         I am also an <b>AWS Certified Developer - Associate (DVA-C02)</b> and a
         proud graduate of the Scrimba Front-end Developer School. Currently, I'm
-        sharpening my proficiency in functional programming, delving into
+        sharpening my proficiency in functional programming, delving into the book,
         Grokking Simplicity as part of my ongoing development journey within our
         developer book club.
       </StyledParagraph>

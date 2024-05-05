@@ -10,6 +10,10 @@ export const Header = () => {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+
+    @media only screen and (max-width: 450px)  {
+      flex-direction: column;
+    }
   `;
 
   const StyledName = styled.span`
@@ -21,9 +25,11 @@ export const Header = () => {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    color: #551A8B
 
     &:hover {
       cursor: pointer;
+      color: #535bf2
     }
   `;
 
@@ -34,17 +40,18 @@ export const Header = () => {
     justify-content: space-between;
   `;
 
+
   return (
     <HeaderWrapper>
       <StyledName>JOSHFARR.DEV</StyledName>
       <LinkWrapper>
         <div style={{ display: "flex", gap: "1em", marginRight: "3em" }}>
-          <StyledLink>About</StyledLink>
-          <StyledLink>Work</StyledLink>
-          <StyledLink>Resume</StyledLink>
+          <StyledLink data-scroll href="#about">About</StyledLink>
+          <StyledLink data-scroll  href="#work">Work</StyledLink>
+          <StyledLink href="src/assets/Joshua Farr Resume - Software Engineering.pdf" download="Joshua Farr Resume - Software Engineering">Resume</StyledLink>
         </div>
         <div style={{ display: "flex", gap: "1em" }}>
-          <StyledLink>
+        <StyledLink href="https://www.linkedin.com/in/joshuaafarr/">
             <MdOutlineMail size={"1.45em"} />
           </StyledLink>
           <StyledLink href="https://www.linkedin.com/in/joshuaafarr/">

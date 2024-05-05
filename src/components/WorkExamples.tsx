@@ -7,23 +7,42 @@ export const WorkExamples = () => {
     margin-bottom: 1rem;
   `;
 
+
   const StyledParagraph = styled.p`
-    max-width: 750px;
-    fontweight: 300;
-    margin-bottom: 1rem;
-  `;
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin-bottom: 1em;
+  margin-top: 1em;
+  max-width: 750px;
+
+    @media only screen and (max-width: 450px)  {
+        font-size: 1rem;
+    }
+`;
+
+
+  const ProjectGrid = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 3em;
+
+
+
+    @media only screen and (max-width: 450px)  {
+      grid-template-columns: 1fr;
+
+    }
+  
+  `
 
   return (
     <>
+      <div id="work"></div>
+
       <StyledTitle>My Work</StyledTitle>
       <StyledParagraph>
-        Hello I am a styled paragraph. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Aliquid harum quibusdam sunt optio, sequi nostrum sed
-        perspiciatis. A corporis, hic tempora exercitationem qui voluptatem
-        labore, ducimus facilis incidunt quis quas. Lorem ipsum dolor sit amet,
-        consectetur adipisicing elit. Excepturi quos perferendis autem, minima
-        fugiat odit dicta facilis eum natus sequi officiis sit obcaecati eius
-        dolorem expedita odio, est illo quas.
+      Here are a few of the different coding projects that I've recently worked on. Each one is accompanied by a detailed case study, highlighting my continued growth as a developer and showcasing the diverse range of technologies and methodologies I've worked with along the way.      
       </StyledParagraph>
       <div
         style={{
@@ -33,19 +52,12 @@ export const WorkExamples = () => {
           marginTop: "2em",
         }}
       >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            alignItems: "center",
-            gap: "3em",
-          }}
-        >
+        <ProjectGrid>
           <ProjectPreviewCard />
           <ProjectPreviewCard />
           <ProjectPreviewCard />
           <ProjectPreviewCard />
-        </div>
+        </ProjectGrid>
       </div>
     </>
   );
