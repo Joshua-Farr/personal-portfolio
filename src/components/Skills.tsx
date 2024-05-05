@@ -30,6 +30,11 @@ export const Skills = () => {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3em;
+
+
+    @media only screen and (max-width: 450px), (max-width: 750px) {
+      grid-template-columns: 1fr;
+    }
   `
 
 

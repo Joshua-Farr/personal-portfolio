@@ -15,7 +15,7 @@ export const WorkExamples = () => {
   margin-top: 1em;
   max-width: 750px;
 
-    @media only screen and (max-width: 450px)  {
+    @media only screen and (max-width: 450px), (max-width: 750px)  {
         font-size: 1rem;
     }
 `;
@@ -29,7 +29,7 @@ export const WorkExamples = () => {
 
 
 
-    @media only screen and (max-width: 450px)  {
+    @media only screen and (max-width: 450px), (max-width: 750px) {
       grid-template-columns: 1fr;
 
     }

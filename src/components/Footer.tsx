@@ -30,7 +30,7 @@ export const Footer = () => {
     font-weight: 500;
     text-align: left;
 
-    @media only screen and (max-width: 450px)  {
+    @media only screen and (max-width: 450px), (max-width: 750px)  {
         flex-direction: column;
         align-items: flex-start;
       }
@@ -52,8 +52,9 @@ export const Footer = () => {
       color: #3b3b3b;
     }
 
-    @media only screen and (max-width: 450px)  {
+    @media only screen and (max-width: 450px), (max-width: 750px)  {
         margin-top: 2em;
+        margin-left: 0em;
     }
 
   `;

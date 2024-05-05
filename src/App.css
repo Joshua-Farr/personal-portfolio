@@ -1,23 +1,26 @@
 body {
-  margin-inline: 11em;
   max-width: 1024px;
   margin-inline: auto;
 }
 
+@media screen and (max-width: 1080px) {
+  body {
+    max-width: 1080px;
+    margin-inline: 4em;
+  }
+}
 @media screen and (max-width: 450px) {
   body {
-    background-color: lightgreen;
-    margin-inline: 1.5em;
     max-width: 450px;
+    margin-inline: 1em;
   }
 }
 
 
 @media screen and (max-width: 750px) {
   body {
-    background-color: lightgreen;
-    margin-inline: 1.5em;
-    max-width: 450px;
+    max-width: 750px;
+    margin-inline: 3em;
   }
 }
 

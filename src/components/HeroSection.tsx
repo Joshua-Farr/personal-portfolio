@@ -10,6 +10,8 @@ export const HeroSection = () => {
         flex-direction: column;
         justify-content: center;
         height: calc(100vh - 4em);
+
+        border: 2px solid red;
     
     `
 

@@ -8,7 +8,7 @@ const SectionWrapper = styled.div`
     align-items: center;
     gap: 4em;
 
-    @media only screen and (max-width: 450px)  {
+    @media only screen and (max-width: 450px),(max-width: 750px),(max-width: 1080px)  {
         flex-direction: column-reverse;
         gap: 1em;
       }    
@@ -34,7 +34,7 @@ const SectionWrapper = styled.div`
     margin-top: 1em;
     max-width: 600px;
 
-        @media only screen and (max-width: 450px)  {
+        @media only screen and (max-width: 450px),(max-width: 750px)  {
             font-size: 1rem;
 
         }
@@ -48,7 +48,7 @@ const SectionWrapper = styled.div`
     margin-bottom: 3rem;
 
 
-    @media only screen and (max-width: 450px)  {    
+    @media only screen and (max-width: 450px), (max-width: 750px)  {    
         width: 200px;
         height: 200px;
         margin-bottom: 0;
