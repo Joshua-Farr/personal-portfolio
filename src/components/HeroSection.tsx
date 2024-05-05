@@ -19,9 +19,14 @@ export const HeroSection = () => {
         font-Size: 6em; 
         margin-bottom: 1rem;
 
+        @media only screen and (max-width: 750px)  {
+            font-size: 4rem;
+        }
+
         @media only screen and (max-width: 450px)  {
             font-size: 3rem;
         }
+
     `
 
     const StyledH3 = styled.h3`
