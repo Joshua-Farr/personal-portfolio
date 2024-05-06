@@ -26,7 +26,7 @@ export const IndividualSkill = ({children}: any) => {
     return (
 
         <IndividualSkillWrapper>
-            <BulletPoint src="/src/assets/puzzle-piece.svg" style={{height: ".75em", width: ".75em", paddingRight: ".19em"}}/>
+            <BulletPoint src="/puzzle-piece.svg" style={{height: ".75em", width: ".75em", paddingRight: ".19em"}}/>
             {children}
         </IndividualSkillWrapper>
     )

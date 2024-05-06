@@ -65,7 +65,7 @@ export const ProjectPreviewCard = ({name, description} : { name: string, descrip
   return (
     <Card>
       <img
-        src="src/assets/pictures/sample-img.png"
+        src="/sample-img.png"
         alt=" "
         style={{ maxWidth: "100%", borderRadius: "5px" }}
       />

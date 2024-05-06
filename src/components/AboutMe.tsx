@@ -105,7 +105,7 @@ Looking ahead, my goal is to keep collaborating as a developer with talented pro
           </EmphasizedSentence> 
         </>
       </AboutMeWrapper>
-      <ProfilePicture src="\src\assets\pictures\headshot.jpg"></ProfilePicture>
+      <ProfilePicture src="/headshot.jpg"></ProfilePicture>
     </SectionWrapper>
   );
 };
