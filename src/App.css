@@ -3,6 +3,11 @@ body {
   margin-inline: auto;
 }
 
+html {
+  scroll-behavior: smooth; 
+}
+
+
 @media screen and (max-width: 1080px) {
   body {
     max-width: 1080px;
