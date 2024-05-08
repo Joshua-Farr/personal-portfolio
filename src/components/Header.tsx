@@ -47,7 +47,7 @@ export const Header = () => {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: white;
+    color: black;
 
     &:hover {
       cursor: pointer;
@@ -65,7 +65,7 @@ export const Header = () => {
   const MobileMenu = styled.div`
     height: 100vh;
     width: 100%;
-    background-color: black;
+    background-color: #3b3b3b;
 
     display: flex;
     flex-direction: column;
@@ -142,7 +142,7 @@ export const Header = () => {
               rounded
               distance="sm"
               easing="ease-in"
-              color={isOpen ? "white" : "#3B3B3B"}
+              color={isOpen ? "white" : "black"}
               size={40}
               toggled={isOpen}
               toggle={setOpen}
