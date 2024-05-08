@@ -17,10 +17,9 @@ export const MainPage = () => {
     margin-left: auto;
     margin-right: auto;
 
-    @media only screen and (max-width: 450px)  {
+    @media only screen and (max-width: 450px) {
       border: 2px solid black;
       width: 200px;
-
     }
   `;
 

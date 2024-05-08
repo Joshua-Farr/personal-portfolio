@@ -1,18 +1,19 @@
 import styled from "styled-components";
 
 export const AboutMe = () => {
-
-const SectionWrapper = styled.div`
+  const SectionWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 4em;
 
-    @media only screen and (max-width: 450px),(max-width: 750px),(max-width: 1080px)  {
-        flex-direction: column-reverse;
-        gap: 1em;
-      }    
-`
+    @media only screen and (max-width: 450px),
+      (max-width: 750px),
+      (max-width: 1080px) {
+      flex-direction: column-reverse;
+      gap: 1em;
+    }
+  `;
 
   const AboutMeWrapper = styled.div`
     display: flex;
@@ -34,11 +35,9 @@ const SectionWrapper = styled.div`
     margin-top: 1em;
     max-width: 600px;
 
-        @media only screen and (max-width: 450px),(max-width: 750px)  {
-            font-size: 1rem;
-
-        }
-    
+    @media only screen and (max-width: 450px), (max-width: 750px) {
+      font-size: 1rem;
+    }
   `;
 
   const ProfilePicture = styled.img`
@@ -47,12 +46,10 @@ const SectionWrapper = styled.div`
     height: 350px;
     margin-bottom: 3rem;
 
-
-    @media only screen and (max-width: 450px), (max-width: 750px)  {    
-        width: 200px;
-        height: 200px;
-        margin-bottom: 0;
-
+    @media only screen and (max-width: 450px), (max-width: 750px) {
+      width: 200px;
+      height: 200px;
+      margin-bottom: 0;
     }
   `;
 
@@ -68,17 +65,22 @@ const SectionWrapper = styled.div`
         <StyledTitle>About Me</StyledTitle>
         <>
           <StyledParagraph>
-            I absolutely love doing jigsaw puzzles. Growing up, I spent many weekends at my
-            grandparents doing hundreds of puzzles together. I think this is where my love of problem solving (and frosted sugar cookies) initially
-            started - a passion that has shaped my own professional career and
-            led me to initially pursue a degree where I could do just that.
+            I absolutely love doing jigsaw puzzles. Growing up, I spent many
+            weekends at my grandparents doing hundreds of puzzles together. I
+            think this is where my love of problem solving (and frosted sugar
+            cookies) initially started - a passion that has shaped my own
+            professional career and led me to initially pursue a degree where I
+            could do just that.
           </StyledParagraph>
           <EmphasizedSentence>
-            Before I dove into software engineering, I spent four years in process improvement at Asurion. My goal? To make things run smoother and more efficiently for our operations team.
+            Before I dove into software engineering, I spent four years in
+            process improvement at Asurion. My goal? To make things run smoother
+            and more efficiently for our operations team.
           </EmphasizedSentence>
           <StyledParagraph>
-            
-During this time, I collaborated closely with technical product managers and their developers to boost the performance of tools used by both our in-field technicians and their leaders.
+            During this time, I collaborated closely with technical product
+            managers and their developers to boost the performance of tools used
+            by both our in-field technicians and their leaders.
           </StyledParagraph>
 
           <EmphasizedSentence>
@@ -93,16 +95,22 @@ During this time, I collaborated closely with technical product managers and the
           </StyledParagraph>
 
           <EmphasizedSentence>
-          Over time, I wanted to get more hands-on in the product development cycle.
+            Over time, I wanted to get more hands-on in the product development
+            cycle.
           </EmphasizedSentence>
           <StyledParagraph>
-This pushed me to move further into software engineering, where I could jump right into shaping and refining technology products. I started teaching myself and reached out to seasoned engineering mentors for guidance, eventually landing chances to directly add to Asurion's production codebase.
+            This pushed me to move further into software engineering, where I
+            could jump right into shaping and refining technology products. I
+            started teaching myself and reached out to seasoned engineering
+            mentors for guidance, eventually landing chances to directly add to
+            Asurion's production codebase.
           </StyledParagraph>
 
           <EmphasizedSentence>
-            
-Looking ahead, my goal is to keep collaborating as a developer with talented product managers and engineers to solve the puzzle I enjoy the most - creating amazing products that users love. 
-          </EmphasizedSentence> 
+            Looking ahead, my goal is to keep collaborating as a developer with
+            talented product managers and engineers to solve the puzzle I enjoy
+            the most - creating amazing products that users love.
+          </EmphasizedSentence>
         </>
       </AboutMeWrapper>
       <ProfilePicture src="/headshot.jpg"></ProfilePicture>

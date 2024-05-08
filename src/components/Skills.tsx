@@ -7,7 +7,6 @@ export const Skills = () => {
     margin-bottom: 1rem;
   `;
 
-
   const StyledParagraph = styled.p`
     font-size: 1.2rem;
     font-weight: 300;
@@ -15,42 +14,35 @@ export const Skills = () => {
     margin-top: 1em;
     max-width: 700px;
 
-      @media only screen and (max-width: 450px)  {
-          font-size: 1rem;
-      }
-  `
+    @media only screen and (max-width: 450px) {
+      font-size: 1rem;
+    }
+  `;
 
   const SkillTitle = styled.h2`
-        margin-bottom: .75em;
-  `
-
-
+    margin-bottom: 0.75em;
+  `;
 
   const SkillGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3em;
 
-
     @media only screen and (max-width: 450px), (max-width: 750px) {
       grid-template-columns: 1fr;
     }
-  `
-
+  `;
 
   const SkillColumns = styled.div`
     display: flex;
     flex-wrap: wrap;
     // border: 2px solid red;
     gap: 1em;
-  
-  
-  `
+  `;
 
   const SkillParagraphWrapper = styled.div`
-    display: flex
-    `
-
+    display: flex;
+  `;
 
   return (
     <>
@@ -58,26 +50,28 @@ export const Skills = () => {
       <SkillParagraphWrapper>
         {/* <StyledImage src="src/assets/pictures/skills-canva.png"></StyledImage> */}
         <StyledParagraph>
-          In addition to holding a <b>Lean Six Sigma Black Belt</b> certification,
-          I am also an <b>AWS Certified Developer - Associate (DVA-C02)</b> and a
-          proud graduate of the Scrimba Front-end Developer School. <br></br>
-          <div style={{height: ".85em"}}></div>
-          Currently, I'm sharpening my proficiency in functional programming, delving into the book,
-          Grokking Simplicity as part of my ongoing development learning journey.
+          In addition to holding a <b>Lean Six Sigma Black Belt</b>{" "}
+          certification, I am also an{" "}
+          <b>AWS Certified Developer - Associate (DVA-C02)</b> and a proud
+          graduate of the Scrimba Front-end Developer School. <br></br>
+          <div style={{ height: ".85em" }}></div>
+          Currently, I'm sharpening my proficiency in functional programming,
+          delving into the book, Grokking Simplicity as part of my ongoing
+          development learning journey.
         </StyledParagraph>
       </SkillParagraphWrapper>
-      
+
       <SkillGrid>
-        <div style={{display: "flex", flexDirection: "column"}}>
+        <div style={{ display: "flex", flexDirection: "column" }}>
           <SkillTitle>Languages:</SkillTitle>
           <SkillColumns>
-              <IndividualSkill>JavaScript</IndividualSkill>
-              <IndividualSkill>SQL</IndividualSkill>
-              <IndividualSkill>HTML/CSS</IndividualSkill>
+            <IndividualSkill>JavaScript</IndividualSkill>
+            <IndividualSkill>SQL</IndividualSkill>
+            <IndividualSkill>HTML/CSS</IndividualSkill>
           </SkillColumns>
         </div>
 
-        <div style={{display: "flex", flexDirection: "column"}}>
+        <div style={{ display: "flex", flexDirection: "column" }}>
           <SkillTitle>Developer Tools:</SkillTitle>
           <SkillColumns>
             <IndividualSkill>Git</IndividualSkill>
@@ -86,7 +80,7 @@ export const Skills = () => {
             <IndividualSkill>NPM</IndividualSkill>
           </SkillColumns>
         </div>
-        <div style={{display: "flex", flexDirection: "column"}}>
+        <div style={{ display: "flex", flexDirection: "column" }}>
           <SkillTitle>Frameworks/Libraries:</SkillTitle>
           <SkillColumns>
             <IndividualSkill>React</IndividualSkill>
@@ -100,7 +94,7 @@ export const Skills = () => {
           </SkillColumns>
         </div>
 
-        <div style={{display: "flex", flexDirection: "column"}}>
+        <div style={{ display: "flex", flexDirection: "column" }}>
           <SkillTitle>Other Skills:</SkillTitle>
           <SkillColumns>
             <IndividualSkill>Agile</IndividualSkill>
@@ -125,7 +119,6 @@ export const Skills = () => {
                 <IndividualSkill>DevOps</IndividualSkill>
                 <IndividualSkill>Scalability</IndividualSkill> */}
             {/* <IndividualSkill>Analytical Skills</IndividualSkill> */}
-
           </SkillColumns>
         </div>
       </SkillGrid>

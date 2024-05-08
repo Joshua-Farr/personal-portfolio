@@ -14,8 +14,6 @@ export const Footer = () => {
     justify-content: center;
   `;
 
-
-
   const StyledConnect = styled.div`
     color: white;
     background-color: #141c3a;
@@ -30,10 +28,10 @@ export const Footer = () => {
     font-weight: 500;
     text-align: left;
 
-    @media only screen and (max-width: 450px), (max-width: 750px)  {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    @media only screen and (max-width: 450px), (max-width: 750px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   `;
 
   const StyledButton = styled.button`
@@ -52,30 +50,25 @@ export const Footer = () => {
       color: #3b3b3b;
     }
 
-    @media only screen and (max-width: 450px), (max-width: 750px)  {
-        margin-top: 2em;
-        margin-left: 0em;
+    @media only screen and (max-width: 450px), (max-width: 750px) {
+      margin-top: 2em;
+      margin-left: 0em;
     }
-
   `;
 
+  const Copyright = styled.h5`
+    margin-top: 5em;
+  `;
 
-    const Copyright = styled.h5`
-      margin-top: 5em;
-    `;
+  const StyledLink = styled.a`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 
-    const StyledLink = styled.a`
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-
-      &:hover {
-          cursor: pointer;
-      }
-    `;
-
-
- 
+    &:hover {
+      cursor: pointer;
+    }
+  `;
 
   return (
     <>
@@ -92,9 +85,8 @@ export const Footer = () => {
         </StyledConnect>
         <Copyright>
           {/* <a href="https://github.com/Joshua-Farr/personal-portfolio"> */}
-            Website built in React.js by Josh Farr | Copyright © 2024
-
-            {/* </a> */}
+          Website built in React.js by Josh Farr | Copyright © 2024
+          {/* </a> */}
         </Copyright>
         <div
           style={{
@@ -105,7 +97,7 @@ export const Footer = () => {
             marginTop: "2em",
           }}
         >
-           <StyledLink href="https://www.linkedin.com/in/joshuaafarr/">
+          <StyledLink href="https://www.linkedin.com/in/joshuaafarr/">
             <MdOutlineMail size={"1.45em"} />
           </StyledLink>
           <StyledLink href="https://www.linkedin.com/in/joshuaafarr/">

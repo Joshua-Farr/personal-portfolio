@@ -1,14 +1,19 @@
 import styled from "styled-components";
 
-export const ProjectPreviewCard = ({name, description} : { name: string, description: string }) => {
-  
+export const ProjectPreviewCard = ({
+  name,
+  description,
+}: {
+  name: string;
+  description: string;
+}) => {
   const Card = styled.div`
     max-width: 500px;
     border-radius: 17px;
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-    @media only screen and (max-width: 450px)  {
+    @media only screen and (max-width: 450px) {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -22,8 +27,8 @@ export const ProjectPreviewCard = ({name, description} : { name: string, descrip
     color: #3b3b3b;
     margin-top: 1em;
 
-    @media only screen and (max-width: 450px)  {
-      margin-top: .5em;
+    @media only screen and (max-width: 450px) {
+      margin-top: 0.5em;
     }
   `;
 
@@ -32,11 +37,10 @@ export const ProjectPreviewCard = ({name, description} : { name: string, descrip
     margin-top: 0.5rem;
     margin-bottom: 2rem;
 
-    @media only screen and (max-width: 450px)  {
-      font-size: .8rem;
+    @media only screen and (max-width: 450px) {
+      font-size: 0.8rem;
     }
-  
-  `
+  `;
   const StyledButton = styled.a`
     border: 2px solid #551a8b;
     padding: 0.5em 2em;
@@ -55,12 +59,11 @@ export const ProjectPreviewCard = ({name, description} : { name: string, descrip
       transition-delay: 0s;
     }
 
-    @media only screen and (max-width: 450px)  {
-      margin-top: .25em;
+    @media only screen and (max-width: 450px) {
+      margin-top: 0.25em;
       width: 100%;
     }
   `;
-
 
   return (
     <Card>
@@ -71,9 +74,7 @@ export const ProjectPreviewCard = ({name, description} : { name: string, descrip
       />
 
       <ProjectTitle>{name}</ProjectTitle>
-      <ProjectDescription>
-        {description}
-      </ProjectDescription>
+      <ProjectDescription>{description}</ProjectDescription>
 
       <StyledButton href="">Project Details</StyledButton>
     </Card>

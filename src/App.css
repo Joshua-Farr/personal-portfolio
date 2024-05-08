@@ -4,9 +4,8 @@ body {
 }
 
 html {
-  scroll-behavior: smooth; 
+  scroll-behavior: smooth;
 }
-
 
 @media screen and (max-width: 1080px) {
   body {
@@ -14,7 +13,6 @@ html {
     margin-inline: 4em;
   }
 }
-
 
 @media screen and (max-width: 750px) {
   body {
@@ -24,10 +22,9 @@ html {
   }
 }
 
-
 @media screen and (max-width: 450px) {
   body {
     max-width: 450px;
-    margin-inline: 1em;
+    margin-inline: 1.5em;
   }
 }

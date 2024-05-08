@@ -1,4 +1,3 @@
-export const PodCraft = () =>{
-
-    return <></>
-}
+export const PodCraft = () => {
+  return <></>;
+};
