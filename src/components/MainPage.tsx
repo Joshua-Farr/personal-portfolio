@@ -6,7 +6,6 @@ import { Header } from "./Header";
 import { HeroSection } from "./HeroSection";
 import { Skills } from "./Skills";
 import { WorkExamples } from "./WorkExamples";
-import Hamburger from "hamburger-react";
 
 export const MainPage = () => {
   const Divider = styled.div`
