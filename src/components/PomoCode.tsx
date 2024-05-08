@@ -11,27 +11,6 @@ export const PomoCode = () => {
     margin-inline: auto;
   `;
 
-  const Callout = styled.div`
-    color: white;
-    background-color: #141c3a;
-    border-radius: 17px;
-    padding: 1rem;
-    borderradius: 10px;
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    font-weight: 500;
-    text-align: left;
-    margin-block: 1em;
-
-    @media only screen and (max-width: 450px), (max-width: 750px) {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  `;
-
   const StyledH1 = styled.h1`
     font-size: 3em;
     margin-top: 1rem;
