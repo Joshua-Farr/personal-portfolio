@@ -142,7 +142,7 @@ export const Header = () => {
               rounded
               distance="sm"
               easing="ease-in"
-              color={isOpen ? "white" : "black"}
+              color={isOpen ? "white" : "#3B3B3B"}
               size={40}
               toggled={isOpen}
               toggle={setOpen}
