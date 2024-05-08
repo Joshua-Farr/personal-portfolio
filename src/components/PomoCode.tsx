@@ -14,24 +14,24 @@ export const PomoCode = () =>{
 
 
     const Callout = styled.div`
-    color: white;
-    background-color: #141c3a;
-    border-radius: 17px;
-    padding: 1rem;
-    borderradius: 10px;
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    font-weight: 500;
-    text-align: left;
-    margin-block: 1em;
+        color: white;
+        background-color: #141c3a;
+        border-radius: 17px;
+        padding: 1rem;
+        borderradius: 10px;
+        box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        text-align: left;
+        margin-block: 1em;
 
-    @media only screen and (max-width: 450px), (max-width: 750px)  {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+        @media only screen and (max-width: 450px), (max-width: 750px)  {
+            flex-direction: column;
+            align-items: flex-start;
+        }
   `;
 
     const StyledH1 = styled.h1`
@@ -110,13 +110,13 @@ export const PomoCode = () =>{
         <StyledSectionTitle>Project Purpose and Goal</StyledSectionTitle>
         <StyledParagraph>I've been using the Pomodoro technique since college to help me stay focused while working. However, I've usually just used the built-in-timer on my phone to set the work and break intervals.</StyledParagraph>
         <StyledParagraph>For this project, I wanted to eliminate the need for me to manually set and reset the work/break timers on my phone, thus eliminating any temptation to check notifications, open other apps, etc. I also liked the idea of building a web app because something that I could pull up in a browser could as another reminder to stay focused on my work, rather than mindlessly surfing the web. </StyledParagraph>
-        <StyledParagraph>I  knew that working with time in both JavaScript and in React was challenging for many developers so I wanted to to create something for myself to see if I could figure out how to build something that incorporated the two together. </StyledParagraph>
+        <StyledParagraph><b>I knew that working with time in both JavaScript and in React was challenging for many developers so I wanted to to create something for myself to see if I could figure out how to build something that incorporated the two together.</b></StyledParagraph>
 
 
         <Divider></Divider>
         <StyledSectionTitle>Problems and Thought Process</StyledSectionTitle>
         {/* <StyledParagraph><b>The feature that took the most time to perfect was the timer itself.</b></StyledParagraph> */}
-<Callout>The feature that took the most time to perfect was the timer itself</Callout>
+        <StyledParagraph>The feature that took the most time to perfect was the timer itself</StyledParagraph>
         <StyledParagraph>The reason being that I needed to find a good way to start and pause a timer as well as keep track of the current time elapsed so that I could pass this information into the Spinner component which would then do some calculations to figure out how much of the circle to display. </StyledParagraph>
         <StyledParagraph>I solved this by using the <b>useState</b>, <b>useEffect</b>, and <b>useRef</b> React hooks in addition to the <b>setInterval</b> javaScript method. </StyledParagraph>
         <StyledParagraph style={{marginBottom:"0"}}>Upon clicking the timer, it immediately invokes setTimerActive which updates the application state (timerActive) from its initial state of false to true. </StyledParagraph>
@@ -144,22 +144,21 @@ export const PomoCode = () =>{
   >
 </iframe>
 
-        <StyledParagraph style={{marginTop: "0"}}>Once the timer was started, I needed a way to be able to reference the interval later so that the time calculations would stop when when the timer was paused.  Similarly to the timerLength, the interval.current in here  is another useRef hook that, allows me to keep a continuous reference to the active interval so that I can reference it later when using clearInterval later on to stop the timer. Otherwise the timer would just keep on going. </StyledParagraph>
-        <StyledParagraph>Another issue that I ran into was figuring out how to display the time left . Since timerLength is stored in seconds I couldn't just display that value so I created calculateMinutes and calculateSeconds which returns numbers that can be passed to formatToTime which turns them into strings that can be properly displayed in the timer UI. </StyledParagraph>
+        <StyledParagraph style={{marginTop: "0"}}>Once the timer was started, <b>I needed a way to be able to reference the interval later so that the time calculations would stop when when the timer was paused.</b> Similarly to the timerLength, the interval.current in here  is another useRef hook that, allows me to keep a continuous reference to the active interval so that I can reference it later when using clearInterval later on to stop the timer. Otherwise the timer would just keep on going. </StyledParagraph>
+        <StyledParagraph><b>Another issue that I ran into was figuring out how to display the time left.</b> Since timerLength is stored in seconds I couldn't just display that value so I created calculateMinutes and calculateSeconds which returns numbers that can be passed to formatToTime which turns them into strings that can be properly displayed in the timer UI. </StyledParagraph>
         <StyledParagraph>The reason this functionality is necessary is because on a typical timer 60 seconds is shown as 1:00 (with two trailing zeroes) rather than 00:60 and 9 seconds is shown as 0:09 (leading zero) rather than 00:9. The formatToTime function this ensures that the times are displayed correctly and used to update the interface is finally updated. </StyledParagraph>
 
         <iframe
   src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=cobalt&wt=none&l=javascript&width=700&ds=false&dsyoff=20px&dsblur=68px&wc=true&wa=false&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=143%25&si=false&es=2x&wm=false&code=const%2520formatToTime%2520%253D%2520%28minutes%253A%2520number%252C%2520seconds%253A%2520number%29%2520%253D%253E%2520%257B%250A%2520%2520let%2520formattedMinutes%2520%253D%2520%2560%2524%257Bminutes%257D%2560%250A%2520%2520let%2520formattedSeconds%2520%253D%2520%27%27%250A%250A%2520%2520if%2520%28seconds%2520%253C%253D%25209%29%2520%257B%250A%2520%2520%2520%2520formattedSeconds%2520%253D%2520%25600%2524%257Bseconds%257D%2560%250A%2520%2520%257D%2520else%2520if%2520%28seconds%2520%253D%253D%253D%252060%29%2520%257B%250A%2520%2520%2520%2520formattedSeconds%2520%253D%2520%256000%2560%250A%2520%2520%257D%2520else%2520%257B%250A%2520%2520%2520%2520formattedSeconds%2520%253D%2520%2560%2524%257Bseconds%257D%2560%250A%2520%2520%257D%250A%2520%2520return%2520%2560%2524%257BformattedMinutes%257D%253A%2524%257BformattedSeconds%257D%2560%250A%257D%250A"
-  style={{width: "800px", height: "603px", border:"0", transform: "scale(1)", overflow:"hidden",}}
+  style={{width: "800px", height: "603px", border:"0", transform: "scale(1)", overflow:"hidden", marginBottom:"-12em"}}
   sandbox="allow-scripts allow-same-origin">
 </iframe>
 
 
     <Divider></Divider>
     <StyledSectionTitle>Lessons Learned</StyledSectionTitle>
-
-
-
+    <StyledParagraph>This is a project that I originally thought I could get done quickly since it didn't seem to be all that difficult, without many moving parts (pun intended). I ended up completing it over the course of a couple of weeks because the issues with rendering and keeping state in the context of an interval were new concepts to me. <b>This project taught me not underestimate the time needed to complete a task, especially if it involves using new technologies or techniques.</b></StyledParagraph>
+    <StyledParagraph>Since completing this project,<b>I've had the opportunity to work on several other projects at Asurion where I needed to fix issues in our call center reporting that that used the Date functionality</b> to calculate the value of different call center metrics. During those times, I was able to lean on the knowledge gained from this project to help me understand all the intricacies and issues that might occur when starting and stopping timers.</StyledParagraph>
     </CaseStudyWrapper>
         <Footer />
         </>

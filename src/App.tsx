@@ -5,8 +5,8 @@ import { PomoCode } from "./components/PomoCode";
 function App() {
   return (
     <div>
-      {/* <MainPage /> */}
-      <PomoCode />
+      <MainPage />
+      {/* <PomoCode /> */}
     </div>
   );
 }

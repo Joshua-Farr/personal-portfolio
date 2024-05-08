@@ -61,17 +61,17 @@ export const Footer = () => {
 
 
     const Copyright = styled.h5`
-    margin-top: 5em;
+      margin-top: 5em;
     `;
 
     const StyledLink = styled.a`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
 
-    &:hover {
-        cursor: pointer;
-    }
+      &:hover {
+          cursor: pointer;
+      }
     `;
 
 
