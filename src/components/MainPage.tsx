@@ -6,6 +6,7 @@ import { Header } from "./Header";
 import { HeroSection } from "./HeroSection";
 import { Skills } from "./Skills";
 import { WorkExamples } from "./WorkExamples";
+import ScrollToTop from "./ScrollToTop";
 
 export const MainPage = () => {
   const Divider = styled.div`
@@ -32,6 +33,7 @@ export const MainPage = () => {
       <Divider />
       <WorkExamples />
       <Footer />
+      <ScrollToTop />
     </>
   );
 };

@@ -54,6 +54,9 @@ export const Header = () => {
       cursor: pointer;
       color: #535bf2;
     }
+    @media only screen and (max-width: 650px) {
+      color: white;
+    }
   `;
 
   const LinkWrapper = styled.div`
@@ -66,7 +69,7 @@ export const Header = () => {
   const MobileMenu = styled.div`
     height: 100vh;
     width: 100%;
-    background-color: #3b3b3b;
+    background-color: black;
 
     display: flex;
     flex-direction: column;
@@ -83,7 +86,6 @@ export const Header = () => {
     flex-direction: column;
     margin-top: 5em;
     font-size: 2.5em;
-    color: black;
     text-align: left;
     margin-left: 1em;
   `;
@@ -153,13 +155,18 @@ export const Header = () => {
           </div>
 
           <></>
-          <StyledName>JOSHFARR</StyledName>
+          <Link to={`/`} style={{ color: "black" }}>
+            <StyledName>JOSHFARR</StyledName>
+          </Link>
         </MobileHeaderWrapper>
 
         {isOpen && (
           <MobileMenu>
             <>
               <MobileLinks>
+                <Link to={`/`}>
+                  <StyledLink onClick={() => toggleBurger()}>Home</StyledLink>
+                </Link>
                 <StyledLink
                   data-scroll
                   href="#about"

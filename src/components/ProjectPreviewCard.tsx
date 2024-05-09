@@ -5,10 +5,12 @@ export const ProjectPreviewCard = ({
   name,
   description,
   route,
+  featuredImage,
 }: {
   name: string;
   description: string;
   route: string;
+  featuredImage: string;
 }) => {
   const Card = styled.div`
     max-width: 500px;
@@ -71,7 +73,7 @@ export const ProjectPreviewCard = ({
   return (
     <Card>
       <img
-        src="/sample-img.png"
+        src={featuredImage}
         alt=" "
         style={{ maxWidth: "100%", borderRadius: "5px" }}
       />

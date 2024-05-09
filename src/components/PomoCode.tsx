@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
+import ScrollToTop from "./ScrollToTop";
 
 export const PomoCode = () => {
   const CaseStudyWrapper = styled.div`
@@ -273,6 +274,7 @@ export const PomoCode = () => {
         </StyledParagraph>
       </CaseStudyWrapper>
       <Footer />
+      <ScrollToTop />
     </>
   );
 };
