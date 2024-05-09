@@ -1,11 +1,14 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const ProjectPreviewCard = ({
   name,
   description,
+  route,
 }: {
   name: string;
   description: string;
+  route: string;
 }) => {
   const Card = styled.div`
     max-width: 500px;
@@ -76,7 +79,9 @@ export const ProjectPreviewCard = ({
       <ProjectTitle>{name}</ProjectTitle>
       <ProjectDescription>{description}</ProjectDescription>
 
-      <StyledButton href="">Project Details</StyledButton>
+      <Link to={`/${route}`}>
+        <StyledButton>Project Details</StyledButton>
+      </Link>
     </Card>
   );
 };

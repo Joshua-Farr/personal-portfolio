@@ -34,7 +34,7 @@ export const Footer = () => {
     }
   `;
 
-  const StyledButton = styled.button`
+  const StyledButton = styled.a`
     color: #ffffff;
     padding: 1.25em 2em;
     background-color: transparent;
@@ -64,6 +64,7 @@ export const Footer = () => {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    color: black;
 
     &:hover {
       cursor: pointer;
@@ -81,7 +82,9 @@ export const Footer = () => {
             If you're on the lookout for a developer, have any questions, or
             simply want to chat, I'm all ears!
           </div>
-          <StyledButton>Get in touch</StyledButton>
+          <StyledButton href="mailto:joshua.farr2018@gmail.com">
+            Get in touch
+          </StyledButton>
         </StyledConnect>
         <Copyright>
           {/* <a href="https://github.com/Joshua-Farr/personal-portfolio"> */}
@@ -97,7 +100,7 @@ export const Footer = () => {
             marginTop: "2em",
           }}
         >
-          <StyledLink href="https://www.linkedin.com/in/joshuaafarr/">
+          <StyledLink href="mailto:joshua.farr2018@gmail.com">
             <MdOutlineMail size={"1.45em"} />
           </StyledLink>
           <StyledLink href="https://www.linkedin.com/in/joshuaafarr/">

@@ -4,6 +4,7 @@ import { BsLinkedin } from "react-icons/bs";
 import { FaGithubSquare } from "react-icons/fa";
 import { Sling as Hamburger } from "hamburger-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   const HeaderWrapper = styled.div`
@@ -103,7 +104,9 @@ export const Header = () => {
   return (
     <>
       <HeaderWrapper>
-        <StyledName>JOSHFARR</StyledName>
+        <Link to={`/`} style={{ color: "black" }}>
+          <StyledName>JOSHFARR</StyledName>
+        </Link>
         <LinkWrapper>
           <div style={{ display: "flex", gap: "1em", marginRight: "3em" }}>
             <StyledLink data-scroll href="#about">
@@ -120,7 +123,7 @@ export const Header = () => {
             </StyledLink>
           </div>
           <div style={{ display: "flex", gap: "1em" }}>
-            <StyledLink href="https://www.linkedin.com/in/joshuaafarr/">
+            <StyledLink href="mailto:joshua.farr2018@gmail.com">
               <MdOutlineMail size={"1.45em"} />
             </StyledLink>
             <StyledLink href="https://www.linkedin.com/in/joshuaafarr/">
@@ -180,7 +183,7 @@ export const Header = () => {
                 </StyledLink>
 
                 <MobileSocialWrapper>
-                  <StyledLink href="https://www.linkedin.com/in/joshuaafarr/">
+                  <StyledLink href="mailto:joshua.farr2018@gmail.com">
                     <MdOutlineMail size={"1.45em"} />
                   </StyledLink>
                   <StyledLink href="https://www.linkedin.com/in/joshuaafarr/">

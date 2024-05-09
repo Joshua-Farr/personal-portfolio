@@ -21,6 +21,10 @@ export const Skills = () => {
 
   const SkillTitle = styled.h2`
     margin-bottom: 0.75em;
+
+    @media only screen and (max-width: 450px) {
+      text-align: center;
+    }
   `;
 
   const SkillGrid = styled.div`
@@ -38,10 +42,23 @@ export const Skills = () => {
     flex-wrap: wrap;
     // border: 2px solid red;
     gap: 1em;
+
+    @media only screen and (max-width: 450px) {
+      justify-content: center;
+    }
   `;
 
   const SkillParagraphWrapper = styled.div`
     display: flex;
+  `;
+
+  const SkillWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    @media only screen and (max-width: 450px) {
+      justify-content: center;
+    }
   `;
 
   return (
@@ -62,16 +79,16 @@ export const Skills = () => {
       </SkillParagraphWrapper>
 
       <SkillGrid>
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <SkillWrapper>
           <SkillTitle>Languages:</SkillTitle>
           <SkillColumns>
             <IndividualSkill>JavaScript</IndividualSkill>
             <IndividualSkill>SQL</IndividualSkill>
             <IndividualSkill>HTML/CSS</IndividualSkill>
           </SkillColumns>
-        </div>
+        </SkillWrapper>
 
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <SkillWrapper>
           <SkillTitle>Developer Tools:</SkillTitle>
           <SkillColumns>
             <IndividualSkill>Git</IndividualSkill>
@@ -79,8 +96,8 @@ export const Skills = () => {
             <IndividualSkill>Visual Studio</IndividualSkill>
             <IndividualSkill>NPM</IndividualSkill>
           </SkillColumns>
-        </div>
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        </SkillWrapper>
+        <SkillWrapper>
           <SkillTitle>Frameworks/Libraries:</SkillTitle>
           <SkillColumns>
             <IndividualSkill>React</IndividualSkill>
@@ -92,9 +109,9 @@ export const Skills = () => {
             <IndividualSkill>React Router</IndividualSkill>
             <IndividualSkill>Vite</IndividualSkill>
           </SkillColumns>
-        </div>
+        </SkillWrapper>
 
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <SkillWrapper>
           <SkillTitle>Other Skills:</SkillTitle>
           <SkillColumns>
             <IndividualSkill>Agile</IndividualSkill>
@@ -120,7 +137,7 @@ export const Skills = () => {
                 <IndividualSkill>Scalability</IndividualSkill> */}
             {/* <IndividualSkill>Analytical Skills</IndividualSkill> */}
           </SkillColumns>
-        </div>
+        </SkillWrapper>
       </SkillGrid>
     </>
   );
