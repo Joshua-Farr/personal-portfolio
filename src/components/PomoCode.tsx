@@ -68,7 +68,7 @@ export const PomoCode = () => {
           and time management all while reducing the risk of burnout.
         </StyledSubtitle>
 
-        <StyledImage src="public/pomodoro.png" />
+        <StyledImage src="/pomodoro.png" />
 
         <StyledSubtitle>
           Based off the Pomodoro Technique invented by Francesco Cirillo in the

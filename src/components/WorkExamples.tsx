@@ -56,26 +56,26 @@ export const WorkExamples = () => {
             description="Simulation of a competitive 4-player pod, designed to help players practice mulligans for competitive Magic: The
 Gathering cEDH events."
             route=""
-            featuredImage="public/sample-img.png"
+            featuredImage="/sample-img.png"
           />
           {/* ManaForge: cEDH Pod Battle Simulator ??? */}
           <ProjectPreviewCard
             name="PomoCode"
             description="Interval timer for the motivated programmer who wants to work in small, hyper-focused sprints without the risk of burning out."
             route="pomocode"
-            featuredImage="public/pomodoro.png"
+            featuredImage="/pomodoro.png"
           />
           <ProjectPreviewCard
             name="StoreBoost"
             description="A customizable e-commerce storefront application built for small businesses to overcome the initial hurdle of selling online."
             route=""
-            featuredImage="public/sample-img.png"
+            featuredImage="/sample-img.png"
           />
           <ProjectPreviewCard
             name="TBD"
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga iure deserunt, odio provident praesentium nobis."
             route=""
-            featuredImage="public/sample-img.png"
+            featuredImage="/sample-img.png"
           />
         </ProjectGrid>
       </div>
