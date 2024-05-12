@@ -8,7 +8,7 @@ export const PomoCode = () => {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 700px;
+    max-width: 700px;
     margin-inline: auto;
   `;
 
@@ -30,6 +30,10 @@ export const PomoCode = () => {
     font-weight: 300;
     margin-bottom: 1em;
     text-align: left;
+
+    @media only screen and (max-width: 450px), (max-width: 750px) {
+      font-size: 1rem;
+    }
   `;
 
   const StyledImage = styled.img`

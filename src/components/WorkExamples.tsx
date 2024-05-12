@@ -66,9 +66,9 @@ Gathering cEDH events."
             featuredImage="/pomodoro.png"
           />
           <ProjectPreviewCard
-            name="StoreBoost"
+            name="MintRoad"
             description="A customizable e-commerce storefront application built for small businesses to overcome the initial hurdle of selling online."
-            route=""
+            route="mintroad"
             featuredImage="/sample-img.png"
           />
           <ProjectPreviewCard
