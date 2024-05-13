@@ -72,8 +72,8 @@ Gathering cEDH events."
             featuredImage="/sample-img.png"
           />
           <ProjectPreviewCard
-            name="TBD"
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga iure deserunt, odio provident praesentium nobis."
+            name="Other"
+            description="I'm very active in the Developer community. Check out some of the things that i've done recently!"
             route=""
             featuredImage="/sample-img.png"
           />
