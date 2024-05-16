@@ -181,13 +181,13 @@ export const Header = () => {
                 >
                   Work
                 </StyledLink>
-                <StyledLink
+                {/* <StyledLink
                   href="src/assets/Joshua Farr Resume - Software Engineering.pdf"
                   download="Joshua Farr Resume - Software Engineering"
                   onClick={() => toggleBurger()}
                 >
                   Resume
-                </StyledLink>
+                </StyledLink> */}
 
                 <MobileSocialWrapper>
                   <StyledLink href="mailto:joshua.farr2018@gmail.com">
