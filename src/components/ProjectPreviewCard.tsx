@@ -18,11 +18,16 @@ export const ProjectPreviewCard = ({
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     @media only screen and (max-width: 450px) {
       display: flex;
       flex-direction: column;
       align-items: center;
-      jsutify-content: center;
+      justify-content: center;
     }
   `;
 

@@ -118,8 +118,8 @@ export const Header = () => {
               Work
             </StyledLink>
             <StyledLink
-              href="src/assets/Joshua Farr Resume - Software Engineering.pdf"
-              download="Joshua Farr Resume - Software Engineering"
+              href="src/assets/Joshua_Farr_Resume_Software_Engineering.pdf"
+              download="Joshua_Farr_Resume_Software_Engineering.pdf"
             >
               Resume
             </StyledLink>

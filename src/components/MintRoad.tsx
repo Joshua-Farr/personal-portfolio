@@ -95,8 +95,75 @@ export const MintRoad = () => {
 
         <Divider></Divider>
         <StyledSectionTitle>Project Purpose and Goal</StyledSectionTitle>
+        <StyledParagraph>
+          The primary goal of this project was to build an intuitive and
+          efficient storefront interface. I wanted to ensure that products could
+          be displayed within a limited screen area, allowing users to easily
+          navigate through the offerings. By creating a dynamic and responsive
+          UI, I aimed to enhance the overall user experience, minimizing
+          decision fatigue and presenting products in a clear and appealing
+          manner.
+        </StyledParagraph>
+        <StyledSectionTitle>Problems and Thought Process</StyledSectionTitle>
+        <StyledParagraph>
+          One of the main challenges I faced was implementing a dynamic
+          storefront that maintained a fixed sidebar while allowing the main
+          content to scroll. To address this, I utilized routes to fix the left
+          sidebar component, providing the right side with the freedom to
+          scroll. This solution resulted in a clean and intuitive interface that
+          was easy to navigate.
+        </StyledParagraph>
+        <StyledParagraph>
+          Designing a user-friendly interface that minimized decision fatigue
+          was also crucial. Inspired by Instagram’s grid layout, I focused on
+          simplicity, highlighting images with concise text. This approach
+          streamlined the purchasing decision process, making it straightforward
+          for users.
+        </StyledParagraph>
+        <StyledParagraph>
+          Managing a large object containing all product details, such as
+          quantity, price, and images, posed another challenge. I addressed this
+          by employing a robust state management system, ensuring seamless
+          integration and easy data retrieval for the storefront.
+        </StyledParagraph>
 
-        <StyledParagraph></StyledParagraph>
+        <StyledParagraph>
+          Ensuring a solid project architecture was vital for handling
+          functionalities like an analytics dashboard, inventory management, and
+          the storefront itself. To achieve this, I front-loaded much of the
+          work, drawing out the project structure and mapping routes and
+          components in advance. This careful planning helped me avoid potential
+          bugs and facilitated a smoother development process.
+        </StyledParagraph>
+        <StyledSectionTitle>Lessons Learned</StyledSectionTitle>
+
+        <StyledParagraph>
+          This project reinforced the importance of thorough initial planning,
+          often referred to as "nemawashi" in Japanese. By mapping out the
+          project structure and building relationships within the project
+          components early on, I was able to prevent future complications and
+          streamline the development process.
+        </StyledParagraph>
+        <StyledParagraph>
+          Using Material UI for styled components proved to be a game-changer.
+          Its ease of use and theming capabilities allowed me to develop quickly
+          while maintaining consistent styling across the application. This
+          project highlighted the benefits of utilizing modern UI libraries to
+          enhance development efficiency.
+        </StyledParagraph>
+        <StyledParagraph>
+          Effective state management was crucial for handling complex data
+          structures. This project underscored the importance of robust state
+          management systems in building scalable applications, ensuring that
+          all product information was tracked and integrated seamlessly.
+        </StyledParagraph>
+        <StyledParagraph>
+          Strategic project management was invaluable. By thinking through the
+          project architecture before diving into development, I saved time and
+          avoided unnecessary rework. This approach proved to be highly
+          effective and is a strategy I will continue to employ in future
+          projects.
+        </StyledParagraph>
       </CaseStudyWrapper>
       <Footer />
       <ScrollToTop />

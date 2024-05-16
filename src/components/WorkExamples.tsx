@@ -55,7 +55,7 @@ export const WorkExamples = () => {
             name="PodCraft: cEDH Nexus"
             description="Simulation of a competitive 4-player pod, designed to help players practice mulligans for competitive Magic: The
 Gathering cEDH events."
-            route=""
+            route="CedhNexus"
             featuredImage="/sample-img.png"
           />
           {/* ManaForge: cEDH Pod Battle Simulator ??? */}
@@ -71,12 +71,12 @@ Gathering cEDH events."
             route="mintroad"
             featuredImage="/sample-img.png"
           />
-          <ProjectPreviewCard
-            name="Other"
+          {/* <ProjectPreviewCard
+            name="Community Involvement"
             description="I'm very active in the Developer community. Check out some of the things that i've done recently!"
             route=""
             featuredImage="/sample-img.png"
-          />
+          /> */}
         </ProjectGrid>
       </div>
     </>
