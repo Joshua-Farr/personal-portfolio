@@ -117,12 +117,12 @@ export const Header = () => {
             <StyledLink data-scroll href="#work">
               Work
             </StyledLink>
-            <StyledLink
+            {/* <StyledLink
               href="src/assets/Joshua_Farr_Resume_Software_Engineering.pdf"
               download="Joshua_Farr_Resume_Software_Engineering.pdf"
             >
               Resume
-            </StyledLink>
+            </StyledLink> */}
           </div>
           <div style={{ display: "flex", gap: "1em" }}>
             <StyledLink href="mailto:joshua.farr2018@gmail.com">
@@ -169,21 +169,21 @@ export const Header = () => {
                 </Link>
                 <StyledLink
                   data-scroll
-                  href="#about"
+                  href="/#about"
                   onClick={() => toggleBurger()}
                 >
                   About
                 </StyledLink>
                 <StyledLink
                   data-scroll
-                  href="#work"
+                  href="/#work"
                   onClick={() => toggleBurger()}
                 >
                   Work
                 </StyledLink>
                 {/* <StyledLink
-                  href="src/assets/Joshua Farr Resume - Software Engineering.pdf"
-                  download="Joshua Farr Resume - Software Engineering"
+                  href="src/assets/Joshua_Farr_Resume_Software_Engineering.pdf"
+                  download="Joshua_Farr_Resume_Software_Engineering.pdf"
                   onClick={() => toggleBurger()}
                 >
                   Resume

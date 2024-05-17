@@ -65,7 +65,9 @@ export const CedhNexus = () => {
   return (
     <>
       <Header />
-      <StyledH1>Magic: The Gathering Commander Practice Tool</StyledH1>
+      <StyledH1>
+        Magic: The Gathering<br></br>Commander Practice Tool
+      </StyledH1>
       <StyledSubtitle style={{ textAlign: "center" }}>
         A web-based application designed to help players practice and improve
         their gameplay in the Magic: The Gathering Competitive Commander format.
