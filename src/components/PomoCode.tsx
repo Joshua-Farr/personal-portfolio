@@ -141,36 +141,13 @@ export const PomoCode = () => {
           updates the application state (timerActive) from its initial state of
           false to true.
         </StyledParagraph>
-        <iframe
-          src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=cobalt&wt=none&l=javascript&width=680&ds=false&dsyoff=20px&dsblur=68px&wc=false&wa=true&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=2x&wm=false&code=const%2520%255BtimerActive%252C%2520setTimerActive%255D%2520%253D%2520useState%28false%29%253B%250A"
-          style={{
-            width: "100%",
-            height: "100%",
-            border: "0",
-            transform: "scale(1)",
-            overflow: "hidden",
-          }}
-          scrolling="no"
-          sandbox="allow-scripts allow-same-origin"
-        ></iframe>
+        <StyledImage src="/state-img.png" />
         <StyledParagraph style={{ marginBottom: "0", marginTop: "1em" }}>
           This useEffect listens for any changes to the timerActive state and
           passes the currently selected timer's value to the startTimer
           function.
         </StyledParagraph>
-        <iframe
-          src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=cobalt&wt=none&l=javascript&width=700&ds=false&dsyoff=20px&dsblur=68px&wc=false&wa=false&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=2x&wm=false&code=useEffect%28%28%29%2520%253D%253E%2520%257B%250A%2520%2520%2520%2520if%2520%28timerActive%29%2520%257B%250A%2520%2520%2520%2520%2520%2520startTimer%28timerLength.current%29%253B%250A%2520%2520%2520%2520%257D%2520else%2520%257B%250A%2520%2520%2520%2520%2520%2520clearInterval%28interval.current%29%253B%250A%2520%2520%2520%2520%257D%250A%257D%252C%2520%255BtimerActive%255D%29%253B"
-          style={{
-            width: "100%",
-            height: "100%",
-            border: "0",
-            transform: "scale(1)",
-            overflow: "hidden",
-          }}
-          scrolling="no"
-          sandbox="allow-scripts allow-same-origin"
-        ></iframe>
-
+        <StyledImage src="/timer-active.png" />
         <StyledParagraph>
           One of the biggest issues with the project was preventing unessary
           re-renders due to the the UI changing every second. The solution was
@@ -193,18 +170,7 @@ export const PomoCode = () => {
           passed in milliseconds which I then convert to seconds and subtract
           from the current time on the timer.
         </StyledParagraph>
-        <iframe
-          src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=cobalt&wt=none&l=javascript&width=700&ds=false&dsyoff=20px&dsblur=68px&wc=true&wa=false&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=143%25&si=false&es=2x&wm=false&code=const%2520startTimer%2520%253D%2520%28length%253A%2520number%29%2520%253D%253E%2520%257B%250A%2520%2520const%2520startTime%2520%253D%2520new%2520Date%28%29%250A%250A%2520%2520interval.current%2520%253D%2520setInterval%28%28%29%2520%253D%253E%2520%257B%250A%2520%2520%2520%2520const%2520updatedTime%2520%253D%2520Date.now%28%29%250A%250A%2520%2520%2520%2520const%2520timeDiff%2520%253D%2520updatedTime%2520-%2520startTime.getTime%28%29%250A%2520%2520%2520%2520const%2520roundedTimeDiff%2520%253D%2520Math.round%28timeDiff%2520%252F%25201000%29%250A%2520%2520%2520%2520timerLength.current%2520%253D%2520length%2520-%2520roundedTimeDiff%2520%252F%252060%250A%250A%2520%2520%2520%2520%252F%252FOther%2520additional%2520timer%2520code%2520not%2520shown%250A%2520%2520%2520%2520const%2520calculatedMin%2520%253D%2520calculateMinutes%28timerLength.current%29%250A%2520%2520%2520%2520const%2520calculatedSeconds%2520%253D%2520calculateSeconds%28timerLength.current%29%250A%250A%2520%2520%2520%2520setTime%28formatToTime%28calculatedMin%252C%2520calculatedSeconds%29%29%250A%2520%2520%257D%252C%25201000%29%250A%257D%250A"
-          style={{
-            width: "100%",
-            height: "100%",
-            border: "0",
-            transform: "scale(1)",
-            overflow: "hidden",
-          }}
-          sandbox="allow-scripts allow-same-origin"
-          scrolling="no"
-        ></iframe>
+        <StyledImage src="/start-timer.png" />
 
         <StyledParagraph style={{ marginTop: "0" }}>
           Once the timer was started,
@@ -237,18 +203,7 @@ export const PomoCode = () => {
           updated.
         </StyledParagraph>
 
-        <iframe
-          src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=cobalt&wt=none&l=javascript&width=700&ds=false&dsyoff=20px&dsblur=68px&wc=true&wa=false&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=143%25&si=false&es=2x&wm=false&code=const%2520formatToTime%2520%253D%2520%28minutes%253A%2520number%252C%2520seconds%253A%2520number%29%2520%253D%253E%2520%257B%250A%2520%2520let%2520formattedMinutes%2520%253D%2520%2560%2524%257Bminutes%257D%2560%250A%2520%2520let%2520formattedSeconds%2520%253D%2520%27%27%250A%250A%2520%2520if%2520%28seconds%2520%253C%253D%25209%29%2520%257B%250A%2520%2520%2520%2520formattedSeconds%2520%253D%2520%25600%2524%257Bseconds%257D%2560%250A%2520%2520%257D%2520else%2520if%2520%28seconds%2520%253D%253D%253D%252060%29%2520%257B%250A%2520%2520%2520%2520formattedSeconds%2520%253D%2520%256000%2560%250A%2520%2520%257D%2520else%2520%257B%250A%2520%2520%2520%2520formattedSeconds%2520%253D%2520%2560%2524%257Bseconds%257D%2560%250A%2520%2520%257D%250A%2520%2520return%2520%2560%2524%257BformattedMinutes%257D%253A%2524%257BformattedSeconds%257D%2560%250A%257D%250A"
-          style={{
-            width: "800px",
-            height: "603px",
-            border: "0",
-            transform: "scale(1)",
-            overflow: "hidden",
-            marginBottom: "-12em",
-          }}
-          sandbox="allow-scripts allow-same-origin"
-        ></iframe>
+        <StyledImage src="/format-time.png" />
 
         <Divider></Divider>
         <StyledSectionTitle>Lessons Learned</StyledSectionTitle>
