@@ -56,7 +56,7 @@ export const WorkExamples = () => {
             description="Simulation of a competitive 4-player pod, designed to help players practice mulligans for competitive Magic: The
 Gathering cEDH events."
             route="CedhNexus"
-            featuredImage="/sample-img.png"
+            featuredImage="/cedh-img.png"
           />
           {/* ManaForge: cEDH Pod Battle Simulator ??? */}
           <ProjectPreviewCard
@@ -69,7 +69,7 @@ Gathering cEDH events."
             name="MintRoad"
             description="A customizable e-commerce storefront application built for small businesses to overcome the initial hurdle of selling online."
             route="mintroad"
-            featuredImage="/sample-img.png"
+            featuredImage="/mintroad-img.png"
           />
           {/* <ProjectPreviewCard
             name="Community Involvement"

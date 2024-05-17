@@ -65,15 +65,16 @@ export const CedhNexus = () => {
   return (
     <>
       <Header />
-      <StyledH1>
-        Magic: The Gathering<br></br>Commander Practice Tool
-      </StyledH1>
-      <StyledSubtitle style={{ textAlign: "center" }}>
-        A web-based application designed to help players practice and improve
-        their gameplay in the Magic: The Gathering Competitive Commander format.
-      </StyledSubtitle>
-      <StyledImage src="/sample-img.png" />
       <CaseStudyWrapper>
+        <StyledH1>
+          Magic: The Gathering<br></br>Commander Practice Tool
+        </StyledH1>
+        <StyledSubtitle style={{ textAlign: "center" }}>
+          A web-based application designed to help players practice and improve
+          their gameplay in the Magic: The Gathering Competitive Commander
+          format.
+        </StyledSubtitle>
+        <StyledImage src="/cedh-img.png" />
         <StyledSectionTitle>About</StyledSectionTitle>
         <StyledParagraph>
           I developed a web-based tool to help players practice and improve

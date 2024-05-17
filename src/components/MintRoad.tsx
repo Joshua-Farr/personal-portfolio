@@ -65,13 +65,13 @@ export const MintRoad = () => {
   return (
     <>
       <Header />
-      <StyledH1>MintRoad</StyledH1>
-      <StyledSubtitle style={{ textAlign: "center" }}>
-        MintRoad is a customizable e-commerce storefront application built for
-        small businesses to overcome the initial hurdle of selling online.
-      </StyledSubtitle>
-      <StyledImage src="/pomodoro.png" />
       <CaseStudyWrapper>
+        <StyledH1>MintRoad</StyledH1>
+        <StyledSubtitle style={{ textAlign: "center" }}>
+          MintRoad is a customizable e-commerce storefront application built for
+          small businesses to overcome the initial hurdle of selling online.
+        </StyledSubtitle>
+        <StyledImage src="/mintroad-img.png" />
         <StyledParagraph>
           This multi-page web app contains features like the ability to list
           products, build a customizable online storefront, track inventory, and

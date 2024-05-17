@@ -161,8 +161,8 @@ export const PomoCode = () => {
         <iframe
           src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=cobalt&wt=none&l=javascript&width=700&ds=false&dsyoff=20px&dsblur=68px&wc=false&wa=false&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=2x&wm=false&code=useEffect%28%28%29%2520%253D%253E%2520%257B%250A%2520%2520%2520%2520if%2520%28timerActive%29%2520%257B%250A%2520%2520%2520%2520%2520%2520startTimer%28timerLength.current%29%253B%250A%2520%2520%2520%2520%257D%2520else%2520%257B%250A%2520%2520%2520%2520%2520%2520clearInterval%28interval.current%29%253B%250A%2520%2520%2520%2520%257D%250A%257D%252C%2520%255BtimerActive%255D%29%253B"
           style={{
-            width: "700px",
-            height: "271px",
+            width: "100%",
+            height: "100%",
             border: "0",
             transform: "scale(1)",
             overflow: "hidden",
@@ -196,8 +196,8 @@ export const PomoCode = () => {
         <iframe
           src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=cobalt&wt=none&l=javascript&width=700&ds=false&dsyoff=20px&dsblur=68px&wc=true&wa=false&pv=56px&ph=56px&ln=false&fl=1&fm=Hack&fs=14px&lh=143%25&si=false&es=2x&wm=false&code=const%2520startTimer%2520%253D%2520%28length%253A%2520number%29%2520%253D%253E%2520%257B%250A%2520%2520const%2520startTime%2520%253D%2520new%2520Date%28%29%250A%250A%2520%2520interval.current%2520%253D%2520setInterval%28%28%29%2520%253D%253E%2520%257B%250A%2520%2520%2520%2520const%2520updatedTime%2520%253D%2520Date.now%28%29%250A%250A%2520%2520%2520%2520const%2520timeDiff%2520%253D%2520updatedTime%2520-%2520startTime.getTime%28%29%250A%2520%2520%2520%2520const%2520roundedTimeDiff%2520%253D%2520Math.round%28timeDiff%2520%252F%25201000%29%250A%2520%2520%2520%2520timerLength.current%2520%253D%2520length%2520-%2520roundedTimeDiff%2520%252F%252060%250A%250A%2520%2520%2520%2520%252F%252FOther%2520additional%2520timer%2520code%2520not%2520shown%250A%2520%2520%2520%2520const%2520calculatedMin%2520%253D%2520calculateMinutes%28timerLength.current%29%250A%2520%2520%2520%2520const%2520calculatedSeconds%2520%253D%2520calculateSeconds%28timerLength.current%29%250A%250A%2520%2520%2520%2520setTime%28formatToTime%28calculatedMin%252C%2520calculatedSeconds%29%29%250A%2520%2520%257D%252C%25201000%29%250A%257D%250A"
           style={{
-            width: "800px",
-            height: "603px",
+            width: "100%",
+            height: "100%",
             border: "0",
             transform: "scale(1)",
             overflow: "hidden",
