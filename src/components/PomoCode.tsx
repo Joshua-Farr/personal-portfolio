@@ -62,6 +62,52 @@ export const PomoCode = () => {
     }
   `;
 
+  const StyledLink = styled.a`
+    color: #ffffff;
+    padding: 1.25em 2em;
+    background-color: transparent;
+    border: 1px solid #5be9b9;
+    padding: 0.5em 2em;
+    border-radius: 17px;
+    font-weight: 500;
+
+    &:hover {
+      color: black;
+      cursor: pointer;
+      background-color: #5be9b9;
+    }
+  `;
+
+  const StyledLinkWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1em;
+    color: white;
+    background-color: #141c3a;
+    border-radius: 17px;
+    padding: 1rem;
+    width: 100%;
+
+    margin-bottom: 2em;
+    margin-top: 2em;
+
+    @media only screen and (max-width: 450px), (max-width: 750px) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  `;
+
+  const StyledLinkTitle = styled.h2`
+    color: white;
+    margin-right: auto;
+    margin-left: 1em;
+    @media only screen and (max-width: 450px), (max-width: 750px) {
+      margin: auto;
+    }
+  `;
+
   return (
     <>
       <Header />
@@ -80,8 +126,14 @@ export const PomoCode = () => {
           focused work sessions, typically 25 minutes in duration, followed by
           short work breaks to optimize efficiency.
         </StyledSubtitle>
+        <StyledLinkWrapper>
+          <StyledLinkTitle>Want to see more?</StyledLinkTitle>
+          <>
+            <StyledLink>Live site</StyledLink>
+            <StyledLink>Source code</StyledLink>
+          </>
+        </StyledLinkWrapper>
 
-        <Divider></Divider>
         <StyledSectionTitle>About</StyledSectionTitle>
         <StyledParagraph>
           I built this single-page application from scratch, completely in
