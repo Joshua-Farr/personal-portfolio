@@ -132,10 +132,18 @@ export const PomoCode = () => {
         <StyledLinkWrapper>
           <StyledLinkTitle>Want to see more?</StyledLinkTitle>
           <>
-            <StyledLink href="https://spontaneous-palmier-b42e29.netlify.app/">
+            <StyledLink
+              href="https://spontaneous-palmier-b42e29.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Live site
             </StyledLink>
-            <StyledLink href="https://github.com/Joshua-Farr/pomodoro-timer">
+            <StyledLink
+              href="https://github.com/Joshua-Farr/pomodoro-timer"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Source code
             </StyledLink>
           </>

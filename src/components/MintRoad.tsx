@@ -131,8 +131,14 @@ export const MintRoad = () => {
 
         <StyledLinkWrapper>
           <StyledLinkTitle>Want to see more?</StyledLinkTitle>
-          <StyledLink>Live site</StyledLink>
-          <StyledLink href="https://github.com/Joshua-Farr/react-smallbiz-ecommerce-app">
+          <StyledLink href="" target="_blank" rel="noopener noreferrer">
+            Live site
+          </StyledLink>
+          <StyledLink
+            href="https://github.com/Joshua-Farr/react-smallbiz-ecommerce-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Source code
           </StyledLink>
         </StyledLinkWrapper>

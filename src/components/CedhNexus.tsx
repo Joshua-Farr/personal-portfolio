@@ -127,10 +127,18 @@ export const CedhNexus = () => {
 
         <StyledLinkWrapper>
           <StyledLinkTitle>Want to see more?</StyledLinkTitle>
-          <StyledLink href="https://cedh-pod-simulator.netlify.app/">
+          <StyledLink
+            href="https://cedh-pod-simulator.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Live site
           </StyledLink>
-          <StyledLink href="https://github.com/Joshua-Farr/cedh-pod-simulator">
+          <StyledLink
+            href="https://github.com/Joshua-Farr/cedh-pod-simulator"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Source code
           </StyledLink>
         </StyledLinkWrapper>
