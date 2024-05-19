@@ -23,6 +23,9 @@ export const MintRoad = () => {
     font-weight: 300;
     margin-bottom: 1em;
     margin-top: 1em;
+    @media only screen and (max-width: 450px), (max-width: 750px) {
+      font-size: 1rem;
+    }
   `;
 
   const StyledParagraph = styled.p`
@@ -129,7 +132,9 @@ export const MintRoad = () => {
         <StyledLinkWrapper>
           <StyledLinkTitle>Want to see more?</StyledLinkTitle>
           <StyledLink>Live site</StyledLink>
-          <StyledLink>Source code</StyledLink>
+          <StyledLink href="https://github.com/Joshua-Farr/react-smallbiz-ecommerce-app">
+            Source code
+          </StyledLink>
         </StyledLinkWrapper>
         <StyledSectionTitle>About</StyledSectionTitle>
 

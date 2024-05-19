@@ -23,6 +23,9 @@ export const CedhNexus = () => {
     font-weight: 300;
     margin-bottom: 1em;
     margin-top: 1em;
+    @media only screen and (max-width: 450px), (max-width: 750px) {
+      font-size: 1rem;
+    }
   `;
 
   const StyledParagraph = styled.p`
@@ -124,8 +127,12 @@ export const CedhNexus = () => {
 
         <StyledLinkWrapper>
           <StyledLinkTitle>Want to see more?</StyledLinkTitle>
-          <StyledLink>Live site</StyledLink>
-          <StyledLink>Source code</StyledLink>
+          <StyledLink href="https://cedh-pod-simulator.netlify.app/">
+            Live site
+          </StyledLink>
+          <StyledLink href="https://github.com/Joshua-Farr/cedh-pod-simulator">
+            Source code
+          </StyledLink>
         </StyledLinkWrapper>
         <StyledSectionTitle>About</StyledSectionTitle>
         <StyledParagraph>

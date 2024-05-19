@@ -23,6 +23,9 @@ export const PomoCode = () => {
     font-weight: 300;
     margin-bottom: 1em;
     margin-top: 1em;
+    @media only screen and (max-width: 450px), (max-width: 750px) {
+      font-size: 1rem;
+    }
   `;
 
   const StyledParagraph = styled.p`
@@ -129,8 +132,12 @@ export const PomoCode = () => {
         <StyledLinkWrapper>
           <StyledLinkTitle>Want to see more?</StyledLinkTitle>
           <>
-            <StyledLink>Live site</StyledLink>
-            <StyledLink>Source code</StyledLink>
+            <StyledLink href="https://spontaneous-palmier-b42e29.netlify.app/">
+              Live site
+            </StyledLink>
+            <StyledLink href="https://github.com/Joshua-Farr/pomodoro-timer">
+              Source code
+            </StyledLink>
           </>
         </StyledLinkWrapper>
 
