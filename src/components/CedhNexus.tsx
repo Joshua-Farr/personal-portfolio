@@ -151,6 +151,14 @@ export const CedhNexus = () => {
           broader Magic: The Gathering community.
         </StyledParagraph>
 
+        <StyledParagraph>
+          Since is initial launch, this tool has helped{" "}
+          <b>over 180 individuals</b> improve their ability to mulligan
+          correctly. As a live service, this pod simulator currently{" "}
+          <b>averages 5 unique users per day</b> but has the capability to scale
+          to more should the need arise.
+        </StyledParagraph>
+
         <Divider></Divider>
         <StyledSectionTitle>Project Purpose and Goal</StyledSectionTitle>
         <StyledParagraph>
