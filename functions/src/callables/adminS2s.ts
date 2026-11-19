@@ -9,6 +9,7 @@ import {
 import { notifyProjectBillingAccess } from "../s2s/notifyProjectAccess";
 import type { BillingAccessState } from "../s2s/codexBilling";
 import { getBillingS2sDryRun } from "../_shared/env";
+import { writeAuditLog } from "../_shared/audit";
 
 /**
  * Admin: manually notify Codex of site-level billing access (dry-run by default).
@@ -60,7 +61,7 @@ export const adminNotifyProjectBillingAccess = onCall(
       projectSlug: slug,
     });
 
-    await db().collection(COLLECTIONS.auditLog).add({
+    await writeAuditLog({
       actorUid: request.auth.uid,
       action: "adminNotifyProjectBillingAccess",
       targetType: "project",
@@ -70,7 +71,6 @@ export const adminNotifyProjectBillingAccess = onCall(
         dryRun: getBillingS2sDryRun(),
         notified: result.notified,
       },
-      createdAt: new Date(),
     });
 
     return {

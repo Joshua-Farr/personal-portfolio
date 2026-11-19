@@ -111,7 +111,7 @@ Netlify: build `npm run build`, publish `dist` (`netlify.toml` SPA fallback incl
 3. Click **Bootstrap admin role** (calls `bootstrapAdmin` callable).
 4. Refresh → `/admin`.
 
-Client users: Phase B/E will invite and set `role=client` + `clientId` claims via Admin callables.
+Client users: from `/admin/clients/:id`, use **Attach portal user** (`adminAttachClientUser`) to set `role=client` + `clientId` claims. Full portal/admin UI: see `docs/billing/PHASE_E.md`.
 
 ---
 
