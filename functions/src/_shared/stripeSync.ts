@@ -137,9 +137,16 @@ async function findInvoiceDocByStripeId(
   return null;
 }
 
+export interface SyncSubscriptionResult {
+  docId: string;
+  projectId: string | null;
+  previousStatus: SubscriptionStatus | null;
+  nextStatus: SubscriptionStatus;
+}
+
 export async function syncSubscriptionFromStripe(
   subscription: Stripe.Subscription
-): Promise<string> {
+): Promise<SyncSubscriptionResult> {
   const meta = subscription.metadata ?? {};
   const stripeId = subscription.id;
   const existing = await findSubscriptionDocByStripeId(stripeId);
@@ -175,13 +182,19 @@ export async function syncSubscriptionFromStripe(
   const docId =
     meta.firestoreSubscriptionId || existing?.id || `sub_${stripeId}`;
 
+  const previousStatus =
+    typeof existing?.data.status === "string"
+      ? (existing.data.status as SubscriptionStatus)
+      : null;
+  const nextStatus = mapStripeSubscriptionStatus(subscription.status);
+
   const now = new Date();
   const payload = {
     clientId,
     projectId,
     serviceId,
     stripeSubscriptionId: stripeId,
-    status: mapStripeSubscriptionStatus(subscription.status),
+    status: nextStatus,
     currentPeriodStart: unixToDate(subscription.current_period_start),
     currentPeriodEnd: unixToDate(subscription.current_period_end),
     cancelAtPeriodEnd: subscription.cancel_at_period_end,
@@ -194,7 +207,7 @@ export async function syncSubscriptionFromStripe(
     .doc(docId)
     .set(payload, { merge: true });
 
-  return docId;
+  return { docId, projectId, previousStatus, nextStatus };
 }
 
 export async function syncInvoiceFromStripe(
