@@ -21,6 +21,18 @@ Client → Projects → Services → Subscriptions → Invoices → Payments
 | `accessEvents` | Outbound S2S audit (Phase C) |
 | `stripeWebhookEvents` | Inbound webhook idempotency |
 | `auditLog` | Admin action audit |
+| `system/billingPolicy` | Phase D failure policy (grace days, auto suspend/reactivate) |
+| `system/billingReconcile` | Last scheduled reconcile summary |
+| `emailEvents` | Transactional email idempotency / audit (Phase D) |
+
+### Subscription access fields (Phase D)
+
+| Field | Meaning |
+| --- | --- |
+| `localAccessState` | `active` \| `grace` \| `suspended` \| `canceled` |
+| `graceStartedAt` | When past_due/unpaid entered grace |
+| `suspendedAt` / `canceledAt` | Timestamps for terminal local states |
+| `lastAccessNotifyState` | Last Codex S2S `active` \| `suspended` queued/sent |
 
 Security: client SDK is **read-only** scoped by custom claims; writes go through Admin SDK / Cloud Functions. See `firestore.rules`.
 

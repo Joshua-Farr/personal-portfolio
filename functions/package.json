@@ -1,7 +1,7 @@
 {
   "name": "joshfarr-billing-functions",
   "private": true,
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Cloud Functions for joshfarr.com client billing (dedicated Firebase project — not dojo-codex)",
   "main": "lib/index.js",
   "engines": {
@@ -14,7 +14,7 @@
     "deploy": "firebase deploy --only functions",
     "seed": "npm run build && node lib/seed/runSeed.js",
     "lint": "eslint --ext .ts src",
-    "test": "npm run build && node --test lib/_shared/env.test.js lib/_shared/stripeSync.test.js lib/s2s/hmac.test.js"
+    "test": "npm run build && node --test lib/_shared/env.test.js lib/_shared/stripeSync.test.js lib/_shared/billingState.test.js lib/s2s/hmac.test.js"
   },
   "dependencies": {
     "firebase-admin": "^12.7.0",

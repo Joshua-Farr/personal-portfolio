@@ -73,8 +73,11 @@ Local emulator: copy `functions/.env.example` → `functions/.env` (gitignored) 
 | `STRIPE_SECRET_KEY` | Functions secret | Stripe test secret (`sk_test_…`) |
 | `STRIPE_WEBHOOK_SECRET` | Functions secret | Webhook signature (`whsec_…`) |
 | `ADMIN_EMAIL_ALLOWLIST` | Functions secret | Comma-separated emails that may call `bootstrapAdmin` |
-| `RESEND_API_KEY` | Functions secret | Reserved; Phase A does not send mail |
+| `RESEND_API_KEY` | Functions secret | Phase D transactional email |
 | `RESEND_FROM_EMAIL` | Optional env | Default `billing@joshfarr.com` |
+| `BILLING_EMAIL_DRY_RUN` | Functions param (default `true`) | When true, no HTTP to Resend |
+| `BILLING_GRACE_PERIOD_DAYS` | Functions param (default `5`) | Overlay on `system/billingPolicy` |
+| `BILLING_AUTO_SUSPEND` / `BILLING_AUTO_REACTIVATE` | Optional env | Policy overlays |
 | `BILLING_S2S_HMAC_SECRET` | Functions secret | Phase C outbound Codex HMAC (same value on Codex; separate store) |
 | `BILLING_S2S_DRY_RUN` | Functions param (default `true`) | When true, no HTTP POST to Codex |
 | `APP_BASE_URL` | Functions param / env | SPA origin for Checkout + Portal return URLs |
@@ -83,7 +86,7 @@ Local emulator: copy `functions/.env.example` → `functions/.env` (gitignored) 
 | `VITE_STRIPE_PUBLISHABLE_KEY` | Netlify / `.env` | `pk_test_…` |
 | `VITE_USE_FIREBASE_EMULATORS` | Local `.env` | `true` to hit Auth/Firestore/Functions emulators |
 
-Phase B details: [`PHASE_B.md`](./PHASE_B.md).
+Phase B: [`PHASE_B.md`](./PHASE_B.md). Phase C: [`PHASE_C.md`](./PHASE_C.md). Phase D: [`PHASE_D.md`](./PHASE_D.md).
 
 ---
 

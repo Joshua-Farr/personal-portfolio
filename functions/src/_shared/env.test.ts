@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 import { describe, it, beforeEach, afterEach } from "node:test";
-import { getStripeSecretKey } from "./env";
+import {
+  getBillingEmailDryRun,
+  getBillingS2sDryRun,
+  getStripeSecretKey,
+} from "./env";
 import { SEED, seedStartsAtDate } from "../seed/seedConfig";
 
 describe("billing env guards", () => {
@@ -27,6 +31,32 @@ describe("billing env guards", () => {
   it("accepts test Stripe secrets", () => {
     process.env.STRIPE_SECRET_KEY = "sk_test_fake";
     assert.equal(getStripeSecretKey(), "sk_test_fake");
+  });
+});
+
+describe("dry-run defaults (Codex + email)", () => {
+  const s2s = process.env.BILLING_S2S_DRY_RUN;
+  const email = process.env.BILLING_EMAIL_DRY_RUN;
+
+  afterEach(() => {
+    if (s2s === undefined) delete process.env.BILLING_S2S_DRY_RUN;
+    else process.env.BILLING_S2S_DRY_RUN = s2s;
+    if (email === undefined) delete process.env.BILLING_EMAIL_DRY_RUN;
+    else process.env.BILLING_EMAIL_DRY_RUN = email;
+  });
+
+  it("defaults S2S and email dry-run to true when unset", () => {
+    delete process.env.BILLING_S2S_DRY_RUN;
+    delete process.env.BILLING_EMAIL_DRY_RUN;
+    assert.equal(getBillingS2sDryRun(), true);
+    assert.equal(getBillingEmailDryRun(), true);
+  });
+
+  it("allows explicit false", () => {
+    process.env.BILLING_S2S_DRY_RUN = "false";
+    process.env.BILLING_EMAIL_DRY_RUN = "false";
+    assert.equal(getBillingS2sDryRun(), false);
+    assert.equal(getBillingEmailDryRun(), false);
   });
 });
 

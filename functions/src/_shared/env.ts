@@ -76,3 +76,13 @@ export function getBillingS2sDryRun(): boolean {
   if (raw === undefined) return true;
   return raw.toLowerCase() !== "false";
 }
+
+/**
+ * When true (default), do not HTTP POST to Resend.
+ * Set BILLING_EMAIL_DRY_RUN=false after reviewing templates in test mode.
+ */
+export function getBillingEmailDryRun(): boolean {
+  const raw = optionalEnv("BILLING_EMAIL_DRY_RUN");
+  if (raw === undefined) return true;
+  return raw.toLowerCase() !== "false";
+}

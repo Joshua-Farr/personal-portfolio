@@ -23,6 +23,19 @@ export type SubscriptionStatus =
   | "canceled"
   | "scheduled";
 
+/**
+ * Phase D local access enforcement (before / after Codex S2S).
+ * - active: healthy or within non-failure states
+ * - grace: past_due/unpaid inside configurable grace window (Codex still active)
+ * - suspended: grace expired → Codex suspended
+ * - canceled: subscription canceled — separate from failure; do not reactivate on old invoice pay
+ */
+export type LocalBillingAccessState =
+  | "active"
+  | "grace"
+  | "suspended"
+  | "canceled";
+
 export type InvoiceKind = "subscription" | "one_time";
 
 export type InvoiceStatus =
@@ -32,9 +45,26 @@ export type InvoiceStatus =
   | "void"
   | "uncollectible";
 
-export type PaymentStatus = "pending" | "succeeded" | "failed" | "refunded";
+export type PaymentStatus =
+  | "pending"
+  | "processing"
+  | "succeeded"
+  | "failed"
+  | "refunded";
 
 export type ProjectIntegrationType = "codex_billing_access";
+
+/** Firestore `system/billingPolicy` — configurable failure automation. */
+export interface BillingFailurePolicyDoc {
+  /** Days in past_due/unpaid before auto-suspend (default 5). */
+  gracePeriodDays: number;
+  autoSuspend: boolean;
+  autoReactivate: boolean;
+  sendTransactionalEmail: boolean;
+  /** Informational; schedule cadence is also set on the Cloud Scheduler job. */
+  reconcileIntervalHours: number;
+  updatedAt: FirestoreTime;
+}
 
 export interface ClientDoc {
   name: string;
@@ -94,6 +124,14 @@ export interface SubscriptionDoc {
   currentPeriodStart: FirestoreTime | null;
   currentPeriodEnd: FirestoreTime | null;
   cancelAtPeriodEnd: boolean;
+  /** Phase D local access state machine (grace before Codex suspend). */
+  localAccessState?: LocalBillingAccessState;
+  graceStartedAt?: FirestoreTime | null;
+  suspendedAt?: FirestoreTime | null;
+  canceledAt?: FirestoreTime | null;
+  lastFailureReason?: string | null;
+  /** Last accessState successfully queued/sent to Codex S2S. */
+  lastAccessNotifyState?: "active" | "suspended" | null;
   createdAt: FirestoreTime;
   updatedAt: FirestoreTime;
 }
@@ -183,4 +221,7 @@ export const COLLECTIONS = {
   accessEvents: "accessEvents",
   stripeWebhookEvents: "stripeWebhookEvents",
   auditLog: "auditLog",
+  /** Server-owned config docs (billingPolicy, reconcile runs, …). */
+  system: "system",
+  emailEvents: "emailEvents",
 } as const;
