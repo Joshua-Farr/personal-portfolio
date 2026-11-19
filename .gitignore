@@ -12,6 +12,20 @@ dist
 dist-ssr
 *.local
 
+# Env / secrets (billing Firebase + Stripe test keys — never commit)
+.env
+.env.*
+!.env.example
+
+# Netlify / Firebase local
+.netlify
+.firebase
+firebase-debug.log
+firebase-debug.*.log
+firestore-debug.log
+ui-debug.log
+*-debug.log
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
