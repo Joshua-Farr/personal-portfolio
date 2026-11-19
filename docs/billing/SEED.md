@@ -2,6 +2,8 @@
 
 Config records only — **do not** hardcode Impact, Codex, or OPD into business logic. Seed lives in `functions/src/seed/seedConfig.ts`.
 
+Part of Phase F rollout: [`ROLLOUT.md`](./ROLLOUT.md). Codex S2S receiver: [dojo-codex#56](https://github.com/Joshua-Farr/dojo-codex/pull/56) (merged) — keep integration **disabled** until dry-run approved.
+
 ## What gets created
 
 | Entity | Id | Notes |
@@ -11,9 +13,10 @@ Config records only — **do not** hardcode Impact, Codex, or OPD into business 
 | Project | `project_one_piece_dojo_codex` | Slug `one-piece-dojo-codex` |
 | Service | `service_codex_maintenance` | $1500 USD / month, starts **2027-01-01** |
 | Subscription | `subscription_codex_maintenance` | Status `scheduled` (or Stripe `trialing` with `--with-stripe`) |
-| Integration | `integration_codex_billing_access` | Stub; `enabled: false` until Phase C |
+| Integration | `integration_codex_billing_access` | `enabled: false` until S2S dry-run approved |
+| Billing policy | `system/billingPolicy` | Grace defaults (Phase D) |
 
-**Historical invoices:** none. No Oct–Dec 2026 documents.
+**Historical invoices:** none. No Oct–Dec 2026 documents. First billable period is **January 2027**.
 
 ## Run
 

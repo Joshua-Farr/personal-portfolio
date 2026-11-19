@@ -86,7 +86,8 @@ Local emulator: copy `functions/.env.example` → `functions/.env` (gitignored) 
 | `VITE_STRIPE_PUBLISHABLE_KEY` | Netlify / `.env` | `pk_test_…` |
 | `VITE_USE_FIREBASE_EMULATORS` | Local `.env` | `true` to hit Auth/Firestore/Functions emulators |
 
-Phase B: [`PHASE_B.md`](./PHASE_B.md). Phase C: [`PHASE_C.md`](./PHASE_C.md). Phase D: [`PHASE_D.md`](./PHASE_D.md).
+Full env table: [`ENV.md`](./ENV.md). Stripe test: [`STRIPE_TEST.md`](./STRIPE_TEST.md). Rollout: [`ROLLOUT.md`](./ROLLOUT.md).  
+Phases: [`PHASE_B.md`](./PHASE_B.md) · [`PHASE_C.md`](./PHASE_C.md) · [`PHASE_D.md`](./PHASE_D.md) · [`PHASE_E.md`](./PHASE_E.md) · [`PHASE_F.md`](./PHASE_F.md).
 
 ---
 
