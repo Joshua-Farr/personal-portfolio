@@ -21,6 +21,10 @@ import {
   isAchProcessingPayment,
 } from "../_shared/billingState";
 import { emailForInvoiceEvent } from "../email/sendTransactional";
+import {
+  decideWebhookClaim,
+  shouldReleaseClaimOnFailure,
+} from "./webhookIdempotency";
 
 async function loadPaymentIntentForInvoice(
   invoice: Stripe.Invoice
@@ -315,7 +319,8 @@ export const stripeWebhook = onRequest(
     try {
       const claimed = await db().runTransaction(async (tx) => {
         const existing = await tx.get(eventRef);
-        if (existing.exists) {
+        const decision = decideWebhookClaim(existing.exists);
+        if (decision.action === "skip_duplicate") {
           return false;
         }
         tx.set(eventRef, {
@@ -334,7 +339,16 @@ export const stripeWebhook = onRequest(
         return;
       }
 
-      const handled = await handleStripeEvent(event);
+      let handled = false;
+      let handlerSucceeded = false;
+      try {
+        handled = await handleStripeEvent(event);
+        handlerSucceeded = true;
+      } finally {
+        if (shouldReleaseClaimOnFailure(handlerSucceeded)) {
+          await eventRef.delete().catch(() => undefined);
+        }
+      }
 
       await eventRef.set(
         {
