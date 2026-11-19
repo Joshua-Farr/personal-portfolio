@@ -20,12 +20,18 @@ Part of Phase F rollout: [`ROLLOUT.md`](./ROLLOUT.md). Codex S2S receiver: [dojo
 
 ## Run
 
-Prerequisites: dedicated billing Firebase project selected (`firebase use …`), Application Default Credentials or service account for **that** project.
+Prerequisites: dedicated billing Firebase project selected (`firebase use …` after copying [`.firebaserc.example`](../../.firebaserc.example) → `.firebaserc` with your real id), Application Default Credentials or service account for **that** project.
+
+The seed CLI **refuses** `dojo-codex` and the committed `.firebaserc` placeholder id.
 
 ```bash
 cd functions
 npm install
 npm run build
+
+# Preview planned docs / Stripe objects (no writes, no credentials required)
+npm run seed -- --print-plan
+npm run seed -- --print-plan --with-stripe
 
 # Firestore documents only
 npm run seed

@@ -9,15 +9,21 @@
  * Flags:
  *   --with-stripe   Also create Stripe test Customer / Product / Price / Subscription
  *                   (requires STRIPE_SECRET_KEY=sk_test_…)
+ *   --print-plan    Print planned docs / Stripe objects; no writes
  *
  * Does NOT create historical Oct–Dec invoices.
  * Does NOT touch dojo-codex Firebase.
+ * Refuses placeholder / dojo-codex project ids (see assertBillingProject).
  */
 
 import { initializeApp, getApps, applicationDefault } from "firebase-admin/app";
 import { getFirestore, Timestamp } from "firebase-admin/firestore";
 import { COLLECTIONS } from "../types/models";
 import { SEED, seedStartsAtDate, seedStartsAtUnixSeconds } from "./seedConfig";
+import {
+  assertBillingSeedProject,
+  resolveFirebaseProjectId,
+} from "./assertBillingProject";
 import {
   createProductAndRecurringPrice,
   createScheduledSubscription,
@@ -30,14 +36,44 @@ function init(): void {
   }
 }
 
+function printPlan(withStripe: boolean, projectId: string | undefined): void {
+  console.log("Seed plan (no writes)…");
+  console.log(`  Target Firebase project: ${projectId ?? "(unset — set before real seed)"}`);
+  console.log(`  clients/${SEED.client.id} — ${SEED.client.name} <${SEED.client.billingEmail}> (temporary)`);
+  console.log(`  projects/${SEED.project.id} — ${SEED.project.slug}`);
+  console.log(
+    `  services/${SEED.service.id} — $${SEED.service.amountCents / 100}/${SEED.service.interval} from ${SEED.service.startsAtIso}`
+  );
+  console.log(`  subscriptions/${SEED.subscription.id} — status ${withStripe ? "trialing" : "scheduled"}`);
+  console.log(
+    `  projectIntegrations/${SEED.integration.id} — enabled=${SEED.integration.enabled}`
+  );
+  console.log("  system/billingPolicy — gracePeriodDays=5");
+  console.log("  Historical invoices: NONE (no Oct–Dec 2026 docs)");
+  if (withStripe) {
+    console.log("  Stripe TEST: Customer + Product + Price + Subscription (trial_end 2027-01-01)");
+  } else {
+    console.log("  Stripe: skipped (pass --with-stripe)");
+  }
+}
+
 async function run(): Promise<void> {
-  init();
   const withStripe = process.argv.includes("--with-stripe");
+  const printOnly = process.argv.includes("--print-plan");
+  const resolvedProject = resolveFirebaseProjectId();
+
+  if (printOnly) {
+    printPlan(withStripe, resolvedProject);
+    return;
+  }
+
+  const projectId = assertBillingSeedProject(resolvedProject);
+  init();
   const firestore = getFirestore();
   const now = Timestamp.now();
   const startsAt = Timestamp.fromDate(seedStartsAtDate());
 
-  console.log("Seeding billing Firestore (dedicated project)…");
+  console.log(`Seeding billing Firestore (project=${projectId})…`);
   console.log(
     `  Client: ${SEED.client.name} | TEMP email: ${SEED.client.billingEmail}`
   );
@@ -48,6 +84,9 @@ async function run(): Promise<void> {
     `  Service: ${SEED.service.name} $${SEED.service.amountCents / 100}/${SEED.service.interval} from ${SEED.service.startsAtIso}`
   );
   console.log("  Historical invoices: NONE");
+  console.log(
+    `  Integration enabled=${SEED.integration.enabled} (must stay false until Codex S2S dry-run approved)`
+  );
 
   let stripeCustomerId: string | null = null;
   let stripeProductId: string | null = null;

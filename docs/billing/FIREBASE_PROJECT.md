@@ -12,7 +12,7 @@ The **only** allowed link to Codex is outbound HMAC S2S (see [`S2S_HMAC.md`](./S
    - **Firestore** → create DB; deploy `firestore.rules` immediately
    - **Functions** (Blaze plan)
 4. Project settings → add a **Web** app → copy config into root `.env` / Netlify as `VITE_FIREBASE_*`.
-5. Update `.firebaserc`:
+5. Copy [`.firebaserc.example`](../../.firebaserc.example) → `.firebaserc` and set `default` to your real project id (committed `.firebaserc` stays a placeholder until then):
 
 ```json
 {

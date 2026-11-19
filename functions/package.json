@@ -14,7 +14,7 @@
     "deploy": "firebase deploy --only functions",
     "seed": "npm run build && node lib/seed/runSeed.js",
     "lint": "eslint --ext .ts src",
-    "test": "npm run build && node --test lib/_shared/env.test.js lib/_shared/stripeSync.test.js lib/_shared/billingState.test.js lib/_shared/money.test.js lib/s2s/hmac.test.js lib/s2s/codexBilling.test.js lib/http/webhookIdempotency.test.js"
+    "test": "npm run build && node --test lib/_shared/env.test.js lib/_shared/stripeSync.test.js lib/_shared/billingState.test.js lib/_shared/money.test.js lib/s2s/hmac.test.js lib/s2s/codexBilling.test.js lib/http/webhookIdempotency.test.js lib/seed/assertBillingProject.test.js"
   },
   "dependencies": {
     "firebase-admin": "^12.7.0",
