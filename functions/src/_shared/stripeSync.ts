@@ -189,7 +189,7 @@ export async function syncSubscriptionFromStripe(
   const nextStatus = mapStripeSubscriptionStatus(subscription.status);
 
   const now = new Date();
-  const payload = {
+  const payload: Record<string, unknown> = {
     clientId,
     projectId,
     serviceId,
@@ -201,6 +201,19 @@ export async function syncSubscriptionFromStripe(
     updatedAt: now,
     ...(existing ? {} : { createdAt: now }),
   };
+
+  // Seed localAccessState on first sync only — Phase D state machine owns later updates.
+  if (!existing) {
+    payload.localAccessState =
+      nextStatus === "canceled"
+        ? "canceled"
+        : nextStatus === "past_due" || nextStatus === "unpaid"
+          ? "grace"
+          : "active";
+    if (payload.localAccessState === "grace") {
+      payload.graceStartedAt = now;
+    }
+  }
 
   await db()
     .collection(COLLECTIONS.subscriptions)
@@ -332,6 +345,7 @@ export async function syncPaymentFromPaymentIntent(
 
   let status: PaymentStatus = "pending";
   if (pi.status === "succeeded") status = "succeeded";
+  else if (pi.status === "processing") status = "processing";
   else if (pi.status === "canceled") status = "failed";
   else if (pi.status === "requires_payment_method") status = "failed";
 

@@ -71,4 +71,9 @@ describe("payment method + invoice status maps", () => {
     assert.equal(mapStripeInvoiceStatus("open"), "open");
     assert.equal(mapStripeInvoiceStatus(null), "draft");
   });
+
+  it("maps Stripe subscription unpaid/past_due", () => {
+    assert.equal(mapStripeSubscriptionStatus("unpaid"), "unpaid");
+    assert.equal(mapStripeSubscriptionStatus("past_due"), "past_due");
+  });
 });

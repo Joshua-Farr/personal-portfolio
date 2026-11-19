@@ -156,6 +156,12 @@ async function run(): Promise<void> {
       serviceId: SEED.service.id,
       stripeSubscriptionId,
       status: withStripe ? "trialing" : "scheduled",
+      localAccessState: "active",
+      graceStartedAt: null,
+      suspendedAt: null,
+      canceledAt: null,
+      lastFailureReason: null,
+      lastAccessNotifyState: null,
       currentPeriodStart: null,
       currentPeriodEnd: null,
       cancelAtPeriodEnd: false,
@@ -182,6 +188,21 @@ async function run(): Promise<void> {
     { merge: true }
   );
 
+  batch.set(
+    firestore.collection(COLLECTIONS.system).doc("billingPolicy"),
+    {
+      gracePeriodDays: 5,
+      autoSuspend: true,
+      autoReactivate: true,
+      sendTransactionalEmail: true,
+      reconcileIntervalHours: 1,
+      updatedAt: now,
+      notes:
+        "Phase D defaults. Override via env BILLING_GRACE_PERIOD_DAYS / BILLING_AUTO_*. Codex S2S still gated by integration.enabled + BILLING_S2S_DRY_RUN.",
+    },
+    { merge: true }
+  );
+
   await batch.commit();
 
   console.log("Seed complete.");
@@ -190,6 +211,7 @@ async function run(): Promise<void> {
   console.log(`  services/${SEED.service.id}`);
   console.log(`  subscriptions/${SEED.subscription.id}`);
   console.log(`  projectIntegrations/${SEED.integration.id} (enabled=false)`);
+  console.log(`  system/billingPolicy (gracePeriodDays=5)`);
   if (withStripe) {
     console.log(`  Stripe customer: ${stripeCustomerId}`);
     console.log(`  Stripe price: ${stripePriceId}`);

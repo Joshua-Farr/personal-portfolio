@@ -39,9 +39,9 @@ describe("Metafy-style HMAC (Codex parity)", () => {
   });
 });
 
-describe("subscription → accessState transitions", () => {
-  it("maps suspend-worthy statuses", () => {
-    assert.equal(mapSubscriptionStatusToAccessState("past_due"), "suspended");
+describe("subscription → accessState transitions (Phase D)", () => {
+  it("does not map past_due to immediate suspend (grace first)", () => {
+    assert.equal(mapSubscriptionStatusToAccessState("past_due"), null);
     assert.equal(mapSubscriptionStatusToAccessState("unpaid"), "suspended");
     assert.equal(mapSubscriptionStatusToAccessState("canceled"), "suspended");
   });
@@ -51,16 +51,11 @@ describe("subscription → accessState transitions", () => {
     assert.equal(mapSubscriptionStatusToAccessState("trialing"), "active");
   });
 
-  it("notifies only on accessState change", () => {
-    assert.equal(
-      shouldNotifyAccessTransition("active", "past_due"),
-      "suspended"
-    );
-    assert.equal(
-      shouldNotifyAccessTransition("past_due", "active"),
-      "active"
-    );
-    assert.equal(shouldNotifyAccessTransition("past_due", "unpaid"), null);
+  it("legacy helper: past_due does not notify; cancel does; restore from past_due", () => {
+    assert.equal(shouldNotifyAccessTransition("active", "past_due"), null);
+    assert.equal(shouldNotifyAccessTransition("active", "canceled"), "suspended");
+    assert.equal(shouldNotifyAccessTransition("past_due", "active"), "active");
+    assert.equal(shouldNotifyAccessTransition("canceled", "active"), null);
     assert.equal(shouldNotifyAccessTransition("trialing", "active"), null);
     assert.equal(shouldNotifyAccessTransition(null, "scheduled"), null);
   });

@@ -2,7 +2,7 @@ import { onRequest } from "firebase-functions/v2/https";
 import Stripe from "stripe";
 import { getStripe, assertStripeTestMode } from "../_shared/stripe";
 import { db, initBillingAdmin } from "../_shared/admin";
-import { COLLECTIONS } from "../types/models";
+import { COLLECTIONS, SubscriptionStatus } from "../types/models";
 import {
   markPaymentRefunded,
   syncInvoiceFromStripe,
@@ -12,45 +12,70 @@ import {
 import {
   applyBillingRuntimeEnv,
   billingS2sHmacSecret,
+  resendApiKey,
   stripeSecretKey,
   stripeWebhookSecret,
 } from "../_shared/params";
 import {
-  notifyProjectBillingAccess,
-  shouldNotifyAccessTransition,
-} from "../s2s/notifyProjectAccess";
+  applySubscriptionBillingTransition,
+  isAchProcessingPayment,
+} from "../_shared/billingState";
+import { emailForInvoiceEvent } from "../email/sendTransactional";
 
-async function maybeNotifyCodexFromSubscription(params: {
-  projectId: string | null;
-  previousStatus: string | null;
-  nextStatus: string;
-  subscriptionDocId: string;
-}): Promise<void> {
-  if (!params.projectId) return;
-  const accessState = shouldNotifyAccessTransition(
-    params.previousStatus as never,
-    params.nextStatus as never
-  );
-  if (!accessState) return;
-
+async function loadPaymentIntentForInvoice(
+  invoice: Stripe.Invoice
+): Promise<Stripe.PaymentIntent | null> {
+  const piRef = invoice.payment_intent;
+  if (!piRef) return null;
+  if (typeof piRef === "object") return piRef;
   try {
-    const result = await notifyProjectBillingAccess({
-      projectId: params.projectId,
-      accessState,
-      reason: `subscription_status:${params.previousStatus ?? "none"}→${params.nextStatus}`,
-      subscriptionStatus: params.nextStatus as never,
-      eventId: `billing_sub_${params.subscriptionDocId}_${params.nextStatus}_${Date.now()}`,
+    return await getStripe().paymentIntents.retrieve(piRef);
+  } catch {
+    return null;
+  }
+}
+
+async function applyBillingAfterSubscriptionSync(params: {
+  docId: string;
+  previousStatus: SubscriptionStatus | null;
+  nextStatus: SubscriptionStatus;
+  achProcessing?: boolean;
+}): Promise<void> {
+  try {
+    const result = await applySubscriptionBillingTransition({
+      subscriptionId: params.docId,
+      previousStripeStatus: params.previousStatus,
+      nextStripeStatus: params.nextStatus,
+      achProcessing: params.achProcessing,
     });
     console.log(
-      `[stripeWebhook] Codex S2S notify accessState=${accessState} notified=${result.notified}`
+      `[stripeWebhook] billingState action=${result.decision.action} local=${result.decision.nextLocalState} notified=${result.notified} reason=${result.decision.reason}`
     );
   } catch (err) {
-    // Do not fail the Stripe webhook ACK on S2S issues — accessEvents + retries cover delivery.
     console.error(
-      "[stripeWebhook] Codex S2S notify failed:",
+      "[stripeWebhook] billingState failed:",
       err instanceof Error ? err.message : err
     );
   }
+}
+
+async function findSubscriptionDocIdForInvoice(
+  invoice: Stripe.Invoice
+): Promise<string | null> {
+  const stripeSubId =
+    typeof invoice.subscription === "string"
+      ? invoice.subscription
+      : invoice.subscription?.id ?? null;
+  if (!stripeSubId) {
+    return invoice.metadata?.firestoreSubscriptionId ?? null;
+  }
+  const snap = await db()
+    .collection(COLLECTIONS.subscriptions)
+    .where("stripeSubscriptionId", "==", stripeSubId)
+    .limit(1)
+    .get();
+  if (!snap.empty) return snap.docs[0]!.id;
+  return invoice.metadata?.firestoreSubscriptionId ?? null;
 }
 
 async function handleStripeEvent(event: Stripe.Event): Promise<boolean> {
@@ -58,14 +83,23 @@ async function handleStripeEvent(event: Stripe.Event): Promise<boolean> {
     case "customer.subscription.created":
     case "customer.subscription.updated":
     case "customer.subscription.deleted": {
-      const sync = await syncSubscriptionFromStripe(
-        event.data.object as Stripe.Subscription
-      );
-      await maybeNotifyCodexFromSubscription({
-        projectId: sync.projectId,
+      const subscription = event.data.object as Stripe.Subscription;
+      const sync = await syncSubscriptionFromStripe(subscription);
+
+      let achProcessing = false;
+      const latest = subscription.latest_invoice;
+      if (latest && typeof latest === "object" && "payment_intent" in latest) {
+        const pi = latest.payment_intent;
+        if (pi && typeof pi === "object") {
+          achProcessing = isAchProcessingPayment(pi);
+        }
+      }
+
+      await applyBillingAfterSubscriptionSync({
+        docId: sync.docId,
         previousStatus: sync.previousStatus,
         nextStatus: sync.nextStatus,
-        subscriptionDocId: sync.docId,
+        achProcessing,
       });
       return true;
     }
@@ -76,12 +110,119 @@ async function handleStripeEvent(event: Stripe.Event): Promise<boolean> {
     case "invoice.payment_failed":
     case "invoice.voided":
     case "invoice.marked_uncollectible": {
-      await syncInvoiceFromStripe(event.data.object as Stripe.Invoice);
+      const invoice = event.data.object as Stripe.Invoice;
+      const invoiceDocId = await syncInvoiceFromStripe(invoice);
+
+      const amountCents = invoice.amount_due ?? invoice.total ?? 0;
+      const currency = invoice.currency ?? "usd";
+      const clientId =
+        invoice.metadata?.firestoreClientId ??
+        (
+          await db().collection(COLLECTIONS.invoices).doc(invoiceDocId).get()
+        ).data()?.clientId;
+      const projectId =
+        invoice.metadata?.firestoreProjectId ??
+        (
+          await db().collection(COLLECTIONS.invoices).doc(invoiceDocId).get()
+        ).data()?.projectId;
+
+      if (typeof clientId === "string") {
+        if (event.type === "invoice.finalized" || event.type === "invoice.created") {
+          if (invoice.status === "open") {
+            await emailForInvoiceEvent({
+              kind: "invoice",
+              clientId,
+              projectId: typeof projectId === "string" ? projectId : null,
+              invoiceDocId,
+              amountCents,
+              currency,
+              hostedInvoiceUrl: invoice.hosted_invoice_url,
+              dedupeKey: event.id,
+            });
+          }
+        } else if (event.type === "invoice.paid") {
+          await emailForInvoiceEvent({
+            kind: "payment_succeeded",
+            clientId,
+            projectId: typeof projectId === "string" ? projectId : null,
+            invoiceDocId,
+            amountCents: invoice.amount_paid ?? amountCents,
+            currency,
+            hostedInvoiceUrl: invoice.hosted_invoice_url,
+            dedupeKey: event.id,
+          });
+        } else if (event.type === "invoice.payment_failed") {
+          const pi = await loadPaymentIntentForInvoice(invoice);
+          if (isAchProcessingPayment(pi)) {
+            console.log(
+              `[stripeWebhook] invoice.payment_failed ignored — ACH processing (${invoice.id})`
+            );
+          } else {
+            await emailForInvoiceEvent({
+              kind: "payment_failed",
+              clientId,
+              projectId: typeof projectId === "string" ? projectId : null,
+              invoiceDocId,
+              amountCents,
+              currency,
+              hostedInvoiceUrl: invoice.hosted_invoice_url,
+              dedupeKey: event.id,
+            });
+          }
+        }
+      }
+
+      // Drive access state from linked subscription after paid / failed / uncollectible.
+      if (
+        event.type === "invoice.paid" ||
+        event.type === "invoice.payment_failed" ||
+        event.type === "invoice.marked_uncollectible"
+      ) {
+        const subDocId = await findSubscriptionDocIdForInvoice(invoice);
+        if (subDocId) {
+          const subSnap = await db()
+            .collection(COLLECTIONS.subscriptions)
+            .doc(subDocId)
+            .get();
+          const subData = subSnap.data();
+          const stripeSubId =
+            typeof invoice.subscription === "string"
+              ? invoice.subscription
+              : invoice.subscription?.id ??
+                (typeof subData?.stripeSubscriptionId === "string"
+                  ? subData.stripeSubscriptionId
+                  : null);
+
+          if (stripeSubId) {
+            const remote = await getStripe().subscriptions.retrieve(stripeSubId);
+            const sync = await syncSubscriptionFromStripe(remote);
+            const pi = await loadPaymentIntentForInvoice(invoice);
+            await applyBillingAfterSubscriptionSync({
+              docId: sync.docId,
+              previousStatus: sync.previousStatus,
+              nextStatus: sync.nextStatus,
+              achProcessing:
+                event.type === "invoice.payment_failed"
+                  ? isAchProcessingPayment(pi)
+                  : false,
+            });
+          } else if (event.type === "invoice.paid" && subSnap.exists) {
+            // No Stripe sub id — still attempt reactivate using local status if healthy path.
+            const status = (subData?.status as SubscriptionStatus) ?? "active";
+            await applyBillingAfterSubscriptionSync({
+              docId: subDocId,
+              previousStatus: status,
+              nextStatus: status === "canceled" ? "canceled" : "active",
+            });
+          }
+        }
+      }
       return true;
     }
     case "payment_intent.succeeded":
     case "payment_intent.payment_failed":
-    case "payment_intent.canceled": {
+    case "payment_intent.canceled":
+    case "payment_intent.processing": {
       await syncPaymentFromPaymentIntent(
         event.data.object as Stripe.PaymentIntent
       );
@@ -106,12 +247,17 @@ async function handleStripeEvent(event: Stripe.Event): Promise<boolean> {
 
 /**
  * Stripe webhook with signature verification, test-mode enforcement,
- * idempotent event recording, Firestore sync, and optional Codex S2S notify
- * on subscription suspend/restore transitions.
+ * idempotent event recording, Firestore sync, Phase D billing state machine,
+ * Resend transactional emails, and Codex S2S notify on suspend/restore only.
  */
 export const stripeWebhook = onRequest(
   {
-    secrets: [stripeSecretKey, stripeWebhookSecret, billingS2sHmacSecret],
+    secrets: [
+      stripeSecretKey,
+      stripeWebhookSecret,
+      billingS2sHmacSecret,
+      resendApiKey,
+    ],
     cors: false,
   },
   async (req, res) => {
@@ -139,6 +285,7 @@ export const stripeWebhook = onRequest(
       applyBillingRuntimeEnv({
         includeWebhookSecret: true,
         includeS2s: true,
+        includeResend: true,
       });
 
       event = getStripe().webhooks.constructEvent(
@@ -177,7 +324,7 @@ export const stripeWebhook = onRequest(
           processedAt: new Date(),
           livemode: event.livemode,
           status: "processing",
-          phase: "C",
+          phase: "D",
         });
         return true;
       });
@@ -198,7 +345,7 @@ export const stripeWebhook = onRequest(
         { merge: true }
       );
 
-      res.json({ received: true, handled, phase: "C" });
+      res.json({ received: true, handled, phase: "D" });
     } catch (err) {
       const message = err instanceof Error ? err.message : "Handler error";
       console.error(`[stripeWebhook] handler failed for ${event.id}:`, message);
