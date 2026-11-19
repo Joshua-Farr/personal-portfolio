@@ -23,7 +23,7 @@ Master index for Phase F. Companion checklist copy also lives in the project sto
 1. **Firebase** — create billing project; update `.firebaserc`; deploy rules/functions ([`FIREBASE_PROJECT.md`](./FIREBASE_PROJECT.md)).
 2. **Env** — set test Stripe + allowlist + Resend reserved; leave dry-runs true ([`ENV.md`](./ENV.md)).
 3. **Stripe test** — webhook, Checkout, Portal ([`STRIPE_TEST.md`](./STRIPE_TEST.md)).
-4. **Seed** — Impact + Codex project/service from **2027-01-01**; optional `--with-stripe` ([`SEED.md`](./SEED.md)).
+4. **Seed** — Impact + Codex project/service from **2027-01-01**; preview with `--print-plan`; optional `--with-stripe` ([`SEED.md`](./SEED.md)). Seed refuses `dojo-codex` / `.firebaserc` placeholder.
 5. **Admin + client** — bootstrap admin; attach portal user ([`CLIENT_ONBOARDING.md`](./CLIENT_ONBOARDING.md)).
 6. **Resend dry-run** — trigger invoice/grace paths; inspect `emailEvents` ([`RESEND.md`](./RESEND.md)).
 7. **S2S dry-run** — matching HMAC; `accessEvents` only; Codex #56 deployed ([`S2S_HMAC.md`](./S2S_HMAC.md)).

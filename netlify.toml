@@ -8,7 +8,9 @@
   to = "/index.html"
   status = 200
 
-# Optional later (Phase B): proxy Stripe webhooks to billing Cloud Functions
+# Stripe webhooks should point at Firebase Functions directly (preferred):
+#   https://us-central1.<BILLING_PROJECT>.cloudfunctions.net/stripeWebhook
+# Optional Netlify proxy (only after billing project id is known):
 # [[redirects]]
 #   from = "/api/webhooks/stripe"
 #   to = "https://us-central1.YOUR_BILLING_PROJECT.cloudfunctions.net/stripeWebhook"

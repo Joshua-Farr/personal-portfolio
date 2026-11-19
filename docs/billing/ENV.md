@@ -3,7 +3,17 @@
 All secrets belong to the **joshfarr.com billing** Firebase / Netlify site.  
 **Never** copy values from `dojo-codex` / One Piece Dojo.
 
-Local templates: root [`.env.example`](../../.env.example), [`functions/.env.example`](../../functions/.env.example).
+Local templates: root [`.env.example`](../../.env.example), [`functions/.env.example`](../../functions/.env.example).  
+Firebase project id template: [`.firebaserc.example`](../../.firebaserc.example) (committed `.firebaserc` is a placeholder until you create the project).
+
+**Where to set values**
+
+| Surface | How |
+| --- | --- |
+| Netlify SPA | Site → **Environment variables** → `VITE_*` (build-time) |
+| Firebase Functions secrets | `firebase functions:secrets:set NAME` on the **billing** project |
+| Firebase Functions params | `APP_BASE_URL`, `BILLING_*_DRY_RUN`, etc. (defaults keep dry-run **true**) |
+| Local | root `.env` + `functions/.env` (both gitignored) |
 
 ## SPA (Netlify / Vite)
 
