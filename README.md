@@ -2,14 +2,14 @@
 
 Marketing SPA (Vite + React) hosted on **Netlify**, plus a **Client Billing Portal** foundation.
 
-## Billing (Phase A)
+## Billing (Phase A + B)
 
 - **Backend:** dedicated Firebase project (Auth + Firestore + Cloud Functions) — **not** `dojo-codex` / One Piece Dojo.
-- **Payments:** Stripe **test mode** only.
+- **Payments:** Stripe **test mode** only — Checkout, Customer Portal, one-time invoices, webhook → Firestore sync.
 - **Email:** Resend scaffold (no customer sends yet).
-- **Docs:** [`docs/billing/SETUP.md`](docs/billing/SETUP.md), [`SEED.md`](docs/billing/SEED.md), [`SCHEMA.md`](docs/billing/SCHEMA.md).
+- **Docs:** [`docs/billing/SETUP.md`](docs/billing/SETUP.md), [`SEED.md`](docs/billing/SEED.md), [`SCHEMA.md`](docs/billing/SCHEMA.md), [`PHASE_B.md`](docs/billing/PHASE_B.md).
 
-Routes: `/login`, `/admin`, `/portal` (shells). Marketing routes unchanged.
+Routes: `/login`, `/admin`, `/portal`. Marketing routes unchanged.
 
 ```bash
 npm install

@@ -76,9 +76,13 @@ Local emulator: copy `functions/.env.example` → `functions/.env` (gitignored) 
 | `RESEND_API_KEY` | Functions secret | Reserved; Phase A does not send mail |
 | `RESEND_FROM_EMAIL` | Optional env | Default `billing@joshfarr.com` |
 | `BILLING_S2S_HMAC_SECRET` | Functions secret | Phase C outbound Codex HMAC only |
+| `APP_BASE_URL` | Functions param / env | SPA origin for Checkout + Portal return URLs |
+| `STRIPE_PORTAL_CONFIGURATION_ID` | Optional Functions env | ACH-first Customer Portal configuration |
 | `VITE_FIREBASE_*` | Netlify / `.env` | Web SDK → **billing** project |
 | `VITE_STRIPE_PUBLISHABLE_KEY` | Netlify / `.env` | `pk_test_…` |
 | `VITE_USE_FIREBASE_EMULATORS` | Local `.env` | `true` to hit Auth/Firestore/Functions emulators |
+
+Phase B details: [`PHASE_B.md`](./PHASE_B.md).
 
 ---
 

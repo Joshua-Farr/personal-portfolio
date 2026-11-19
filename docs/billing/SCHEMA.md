@@ -15,8 +15,8 @@ Client → Projects → Services → Subscriptions → Invoices → Payments
 | `projects` | Client-owned projects (`slug`, status) |
 | `services` | Recurring/one-off offerings + Stripe Product/Price ids + `startsAt` |
 | `subscriptions` | Local mirror of Stripe subscription status |
-| `invoices` | Local mirror (`subscription` \| `one_time`); no historical seed |
-| `payments` | PaymentIntent / charge mirror |
+| `invoices` | Local mirror (`kind: subscription` \| `one_time`); no historical seed; `subscriptionId` null for one-offs |
+| `payments` | PaymentIntent / charge mirror; optional `kind` aligned with invoice |
 | `projectIntegrations` | e.g. `codex_billing_access` + URL + env key name for HMAC |
 | `accessEvents` | Outbound S2S audit (Phase C) |
 | `stripeWebhookEvents` | Inbound webhook idempotency |

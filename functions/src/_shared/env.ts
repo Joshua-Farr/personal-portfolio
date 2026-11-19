@@ -47,6 +47,20 @@ export function getAdminEmailAllowlist(): string[] {
     .filter(Boolean);
 }
 
+/** Public SPA origin for Checkout success/cancel + Customer Portal return. */
+export function getAppBaseUrl(): string {
+  return (
+    optionalEnv("APP_BASE_URL") ??
+    optionalEnv("VITE_APP_BASE_URL") ??
+    "http://localhost:5173"
+  );
+}
+
+/** Optional Stripe Customer Portal configuration (ACH-first branding). */
+export function getStripePortalConfigurationId(): string | undefined {
+  return optionalEnv("STRIPE_PORTAL_CONFIGURATION_ID");
+}
+
 /** Phase C — do not call Codex until this is set and approved. */
 export function getBillingS2sHmacSecret(): string | undefined {
   return optionalEnv("BILLING_S2S_HMAC_SECRET");
