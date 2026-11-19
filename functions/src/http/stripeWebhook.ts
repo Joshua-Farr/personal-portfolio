@@ -11,18 +11,62 @@ import {
 } from "../_shared/stripeSync";
 import {
   applyBillingRuntimeEnv,
+  billingS2sHmacSecret,
   stripeSecretKey,
   stripeWebhookSecret,
 } from "../_shared/params";
+import {
+  notifyProjectBillingAccess,
+  shouldNotifyAccessTransition,
+} from "../s2s/notifyProjectAccess";
+
+async function maybeNotifyCodexFromSubscription(params: {
+  projectId: string | null;
+  previousStatus: string | null;
+  nextStatus: string;
+  subscriptionDocId: string;
+}): Promise<void> {
+  if (!params.projectId) return;
+  const accessState = shouldNotifyAccessTransition(
+    params.previousStatus as never,
+    params.nextStatus as never
+  );
+  if (!accessState) return;
+
+  try {
+    const result = await notifyProjectBillingAccess({
+      projectId: params.projectId,
+      accessState,
+      reason: `subscription_status:${params.previousStatus ?? "none"}→${params.nextStatus}`,
+      subscriptionStatus: params.nextStatus as never,
+      eventId: `billing_sub_${params.subscriptionDocId}_${params.nextStatus}_${Date.now()}`,
+    });
+    console.log(
+      `[stripeWebhook] Codex S2S notify accessState=${accessState} notified=${result.notified}`
+    );
+  } catch (err) {
+    // Do not fail the Stripe webhook ACK on S2S issues — accessEvents + retries cover delivery.
+    console.error(
+      "[stripeWebhook] Codex S2S notify failed:",
+      err instanceof Error ? err.message : err
+    );
+  }
+}
 
 async function handleStripeEvent(event: Stripe.Event): Promise<boolean> {
   switch (event.type) {
     case "customer.subscription.created":
     case "customer.subscription.updated":
     case "customer.subscription.deleted": {
-      await syncSubscriptionFromStripe(
+      const sync = await syncSubscriptionFromStripe(
         event.data.object as Stripe.Subscription
       );
+      await maybeNotifyCodexFromSubscription({
+        projectId: sync.projectId,
+        previousStatus: sync.previousStatus,
+        nextStatus: sync.nextStatus,
+        subscriptionDocId: sync.docId,
+      });
       return true;
     }
     case "invoice.created":
@@ -62,12 +106,12 @@ async function handleStripeEvent(event: Stripe.Event): Promise<boolean> {
 
 /**
  * Stripe webhook with signature verification, test-mode enforcement,
- * idempotent event recording, and Firestore sync for subscriptions /
- * invoices / payments.
+ * idempotent event recording, Firestore sync, and optional Codex S2S notify
+ * on subscription suspend/restore transitions.
  */
 export const stripeWebhook = onRequest(
   {
-    secrets: [stripeSecretKey, stripeWebhookSecret],
+    secrets: [stripeSecretKey, stripeWebhookSecret, billingS2sHmacSecret],
     cors: false,
   },
   async (req, res) => {
@@ -92,7 +136,10 @@ export const stripeWebhook = onRequest(
 
     let event: Stripe.Event;
     try {
-      applyBillingRuntimeEnv({ includeWebhookSecret: true });
+      applyBillingRuntimeEnv({
+        includeWebhookSecret: true,
+        includeS2s: true,
+      });
 
       event = getStripe().webhooks.constructEvent(
         rawBody,
@@ -130,7 +177,7 @@ export const stripeWebhook = onRequest(
           processedAt: new Date(),
           livemode: event.livemode,
           status: "processing",
-          phase: "B",
+          phase: "C",
         });
         return true;
       });
@@ -151,7 +198,7 @@ export const stripeWebhook = onRequest(
         { merge: true }
       );
 
-      res.json({ received: true, handled, phase: "B" });
+      res.json({ received: true, handled, phase: "C" });
     } catch (err) {
       const message = err instanceof Error ? err.message : "Handler error";
       console.error(`[stripeWebhook] handler failed for ${event.id}:`, message);

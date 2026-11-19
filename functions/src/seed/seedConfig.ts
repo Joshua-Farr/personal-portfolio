@@ -35,9 +35,10 @@ export const SEED = {
     type: "codex_billing_access" as const,
     baseUrl: "https://onepiecedojo.gg/api/internal/billing/status",
     hmacSecretEnvKey: "BILLING_S2S_HMAC_SECRET",
+    /** Keep false until Codex receiver + dry-run approved — avoids production suspend. */
     enabled: false,
     notes:
-      "Stub only in Phase A. Enable in Phase C after Codex receiver + shared HMAC secret.",
+      "Phase C client ready. Keep enabled=false and BILLING_S2S_DRY_RUN=true until Codex receiver dry-run is approved. Do not suspend production Codex.",
   },
   subscription: {
     id: "subscription_codex_maintenance",

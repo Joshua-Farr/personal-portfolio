@@ -75,7 +75,8 @@ Local emulator: copy `functions/.env.example` → `functions/.env` (gitignored) 
 | `ADMIN_EMAIL_ALLOWLIST` | Functions secret | Comma-separated emails that may call `bootstrapAdmin` |
 | `RESEND_API_KEY` | Functions secret | Reserved; Phase A does not send mail |
 | `RESEND_FROM_EMAIL` | Optional env | Default `billing@joshfarr.com` |
-| `BILLING_S2S_HMAC_SECRET` | Functions secret | Phase C outbound Codex HMAC only |
+| `BILLING_S2S_HMAC_SECRET` | Functions secret | Phase C outbound Codex HMAC (same value on Codex; separate store) |
+| `BILLING_S2S_DRY_RUN` | Functions param (default `true`) | When true, no HTTP POST to Codex |
 | `APP_BASE_URL` | Functions param / env | SPA origin for Checkout + Portal return URLs |
 | `STRIPE_PORTAL_CONFIGURATION_ID` | Optional Functions env | ACH-first Customer Portal configuration |
 | `VITE_FIREBASE_*` | Netlify / `.env` | Web SDK → **billing** project |

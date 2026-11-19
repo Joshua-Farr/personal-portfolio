@@ -61,7 +61,18 @@ export function getStripePortalConfigurationId(): string | undefined {
   return optionalEnv("STRIPE_PORTAL_CONFIGURATION_ID");
 }
 
-/** Phase C — do not call Codex until this is set and approved. */
+/** Phase C — shared HMAC secret (same string as Codex; separate Firebase secret store). */
 export function getBillingS2sHmacSecret(): string | undefined {
   return optionalEnv("BILLING_S2S_HMAC_SECRET");
+}
+
+/**
+ * When true (default), sign + log accessEvents but do not HTTP POST to Codex.
+ * Set BILLING_S2S_DRY_RUN=false only after Codex receiver dry-run is approved.
+ * Never suspend production Codex from this portfolio app without that approval.
+ */
+export function getBillingS2sDryRun(): boolean {
+  const raw = optionalEnv("BILLING_S2S_DRY_RUN");
+  if (raw === undefined) return true;
+  return raw.toLowerCase() !== "false";
 }
