@@ -15,13 +15,13 @@ Billing code **rejects** live keys (`sk_live_`) and live-mode webhooks until an 
 After Functions deploy (billing project):
 
 ```text
-https://us-central1.<BILLING_PROJECT>.cloudfunctions.net/stripeWebhook
+https://us-central1.joshfarr-billing.cloudfunctions.net/stripeWebhook
 ```
 
 Or local:
 
 ```bash
-stripe listen --forward-to localhost:5001/<BILLING_PROJECT>/us-central1/stripeWebhook
+stripe listen --forward-to localhost:5001/joshfarr-billing/us-central1/stripeWebhook
 ```
 
 Copy `whsec_…` → `STRIPE_WEBHOOK_SECRET`.

@@ -11,18 +11,9 @@ The **only** allowed link to Codex is outbound HMAC S2S (see [`S2S_HMAC.md`](./S
    - **Authentication** → Email/Password
    - **Firestore** → create DB; deploy `firestore.rules` immediately
    - **Functions** (Blaze plan)
-4. Project settings → add a **Web** app → copy config into root `.env` / Netlify as `VITE_FIREBASE_*`.
-5. Copy [`.firebaserc.example`](../../.firebaserc.example) → `.firebaserc` and set `default` to your real project id (committed `.firebaserc` stays a placeholder until then):
-
-```json
-{
-  "projects": {
-    "default": "joshfarr-billing"
-  }
-}
-```
-
-6. `firebase login` → `firebase use joshfarr-billing` (or your chosen id).
+4. Project settings → add a **Web** app → copy config into root `.env` / Netlify as `VITE_FIREBASE_*` (see [`.env.example`](../../.env.example); SPA uses `import.meta.env` only).
+5. `.firebaserc` default is **`joshfarr-billing`** (matches [`.firebaserc.example`](../../.firebaserc.example)).
+6. `firebase login` → `firebase use joshfarr-billing`.
 
 **Never** run `firebase use dojo-codex` from this repo.
 

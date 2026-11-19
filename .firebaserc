@@ -1,6 +1,5 @@
 {
   "projects": {
-    "default": "REPLACE_WITH_NEW_BILLING_FIREBASE_PROJECT_ID"
+    "default": "joshfarr-billing"
   }
 }
-
