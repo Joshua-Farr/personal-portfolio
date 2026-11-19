@@ -20,3 +20,11 @@ export {
 } from "./callables/portalBilling";
 export { adminCreateOneTimeInvoice } from "./callables/adminInvoices";
 export { adminNotifyProjectBillingAccess } from "./callables/adminS2s";
+export {
+  adminUpsertClient,
+  adminUpsertProject,
+  adminUpsertService,
+  adminUpdateSubscription,
+  adminAttachClientUser,
+  adminArchiveProject,
+} from "./callables/adminCrud";

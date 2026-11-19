@@ -3,6 +3,11 @@ body {
   margin-inline: auto;
 }
 
+/* Portal / admin chrome — wider than marketing site, scoped via body class */
+body.billing-layout {
+  max-width: 1120px;
+}
+
 html {
   scroll-behavior: smooth;
 }

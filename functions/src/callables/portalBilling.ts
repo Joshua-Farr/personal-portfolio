@@ -1,5 +1,5 @@
 import { onCall, HttpsError } from "firebase-functions/v2/https";
-import { initBillingAdmin, db } from "../_shared/admin";
+import { initBillingAdmin } from "../_shared/admin";
 import { parseClaims, assertClient, assertAdmin } from "../_shared/auth";
 import {
   createBillingPortalSession,
@@ -11,7 +11,7 @@ import {
   getServiceOrThrow,
   startsAtToUnix,
 } from "../_shared/clients";
-import { COLLECTIONS } from "../types/models";
+import { writeAuditLog } from "../_shared/audit";
 import { appBaseUrl, applyBillingRuntimeEnv, stripeSecretKey } from "../_shared/params";
 
 /**
@@ -62,13 +62,12 @@ export const portalCreateSubscriptionCheckout = onCall(
       subscriptionDocId,
     });
 
-    await db().collection(COLLECTIONS.auditLog).add({
+    await writeAuditLog({
       actorUid: request.auth.uid,
       action: "portalCreateSubscriptionCheckout",
       targetType: "service",
       targetId: service.id,
       meta: { sessionId: session.id },
-      createdAt: new Date(),
     });
 
     return { url: session.url, sessionId: session.id };
@@ -147,13 +146,12 @@ export const createOneTimeCheckout = onCall(
       serviceId,
     });
 
-    await db().collection(COLLECTIONS.auditLog).add({
+    await writeAuditLog({
       actorUid: request.auth.uid,
       action: "createOneTimeCheckout",
       targetType: "client",
       targetId: clientId,
       meta: { sessionId: session.id, amountCents, projectId },
-      createdAt: new Date(),
     });
 
     return { url: session.url, sessionId: session.id };

@@ -1,10 +1,10 @@
 import { onCall, HttpsError } from "firebase-functions/v2/https";
-import { initBillingAdmin, db } from "../_shared/admin";
+import { initBillingAdmin } from "../_shared/admin";
 import { parseClaims, assertAdmin } from "../_shared/auth";
 import { createOneTimeStripeInvoice } from "../_shared/stripe";
 import { ensureStripeCustomer } from "../_shared/clients";
-import { COLLECTIONS } from "../types/models";
 import { syncInvoiceFromStripe } from "../_shared/stripeSync";
+import { writeAuditLog } from "../_shared/audit";
 import { applyBillingRuntimeEnv, stripeSecretKey } from "../_shared/params";
 
 /**
@@ -54,7 +54,7 @@ export const adminCreateOneTimeInvoice = onCall(
 
     const invoiceDocId = await syncInvoiceFromStripe(invoice);
 
-    await db().collection(COLLECTIONS.auditLog).add({
+    await writeAuditLog({
       actorUid: request.auth.uid,
       action: "adminCreateOneTimeInvoice",
       targetType: "invoice",
@@ -64,7 +64,6 @@ export const adminCreateOneTimeInvoice = onCall(
         amountCents,
         kind: "one_time",
       },
-      createdAt: new Date(),
     });
 
     return {
