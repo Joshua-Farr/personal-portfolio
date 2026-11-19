@@ -118,13 +118,15 @@ export interface InvoiceDoc {
 
 export interface PaymentDoc {
   clientId: string;
-  invoiceId: string;
+  invoiceId: string | null;
   stripePaymentIntentId: string | null;
   stripeChargeId: string | null;
   amountCents: number;
   currency: string;
   status: PaymentStatus;
   method: PreferredPaymentMethod | "unknown";
+  /** Mirrors invoice kind when known — subscription vs one_time. */
+  kind?: InvoiceKind | null;
   createdAt: FirestoreTime;
   updatedAt: FirestoreTime;
 }
