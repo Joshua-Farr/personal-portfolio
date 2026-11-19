@@ -17,17 +17,8 @@ Stripe is **test mode only** until explicit go-live approval.
    - **Authentication** → Sign-in method → enable **Email/Password**.
    - **Firestore Database** → create database (production mode is fine; deploy `firestore.rules` immediately).
    - **Functions** → enable (Blaze plan required for deploy / some emulator features).
-5. Project settings → **Your apps** → add a **Web** app → copy config into root `.env` as `VITE_FIREBASE_*` (see `.env.example`).
-6. Copy [`.firebaserc.example`](../../.firebaserc.example) over `.firebaserc` (or edit the placeholder) so `default` is your real billing project id:
-
-```json
-{
-  "projects": {
-    "default": "joshfarr-billing"
-  }
-}
-```
-
+5. Project settings → **Your apps** → add a **Web** app → copy config into root `.env` / Netlify as `VITE_FIREBASE_*` (see `.env.example`; SPA reads `import.meta.env` only — do not hardcode apiKey in source).
+6. `.firebaserc` default is **`joshfarr-billing`** (same as [`.firebaserc.example`](../../.firebaserc.example)).
 7. Install CLI if needed: `npm i -g firebase-tools`, then `firebase login` and `firebase use joshfarr-billing`.
 
 **Never** run `firebase use dojo-codex` from this repo.

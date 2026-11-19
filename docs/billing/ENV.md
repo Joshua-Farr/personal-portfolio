@@ -4,7 +4,7 @@ All secrets belong to the **joshfarr.com billing** Firebase / Netlify site.
 **Never** copy values from `dojo-codex` / One Piece Dojo.
 
 Local templates: root [`.env.example`](../../.env.example), [`functions/.env.example`](../../functions/.env.example).  
-Firebase project id template: [`.firebaserc.example`](../../.firebaserc.example) (committed `.firebaserc` is a placeholder until you create the project).
+Firebase project: **`joshfarr-billing`** ([`.firebaserc`](../../.firebaserc) / [`.firebaserc.example`](../../.firebaserc.example)). SPA reads config from `VITE_*` only (`src/lib/firebase.ts`); copy values from root [`.env.example`](../../.env.example) into Netlify / local `.env` — do not hardcode the apiKey in source.
 
 **Where to set values**
 

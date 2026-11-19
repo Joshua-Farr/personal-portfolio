@@ -9,10 +9,20 @@
   status = 200
 
 # Stripe webhooks should point at Firebase Functions directly (preferred):
-#   https://us-central1.<BILLING_PROJECT>.cloudfunctions.net/stripeWebhook
-# Optional Netlify proxy (only after billing project id is known):
+#   https://us-central1.joshfarr-billing.cloudfunctions.net/stripeWebhook
+# Optional Netlify proxy:
 # [[redirects]]
 #   from = "/api/webhooks/stripe"
-#   to = "https://us-central1.YOUR_BILLING_PROJECT.cloudfunctions.net/stripeWebhook"
+#   to = "https://us-central1.joshfarr-billing.cloudfunctions.net/stripeWebhook"
 #   status = 200
 #   force = true
+#
+# Netlify Site → Environment variables (build-time VITE_* for SPA):
+#   VITE_FIREBASE_API_KEY
+#   VITE_FIREBASE_AUTH_DOMAIN=joshfarr-billing.firebaseapp.com
+#   VITE_FIREBASE_PROJECT_ID=joshfarr-billing
+#   VITE_FIREBASE_STORAGE_BUCKET=joshfarr-billing.firebasestorage.app
+#   VITE_FIREBASE_MESSAGING_SENDER_ID
+#   VITE_FIREBASE_APP_ID
+#   VITE_STRIPE_PUBLISHABLE_KEY=pk_test_…
+# Values: see root .env.example. Never put sk_test_ / whsec_ / Resend in Netlify.
